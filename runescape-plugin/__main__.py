@@ -58,46 +58,34 @@ def main():
     with grpc.secure_channel(
         config.host_port, grpc.ssl_channel_credentials()
     ) as channel:
-        channel = grpc.intercept_channel(
-            channel,
-            add_header(
-                "authorization",
-                "Basic {}".format(
-                    base64.b64encode(
-                        f"{config.username}:{config.password}".encode("utf-8")
-                    ).decode("utf-8")
-                ),
-            ),
-        )
         stub = seabird_pb2_grpc.SeabirdStub(channel)
-
-        response, _ = stub.OpenSession.with_call(
-            seabird_pb2.OpenSessionRequest(
-                plugin="runescape",
-                commands={
-                    "rlvl": seabird_pb2.CommandMetadata(
-                        name="rlvl",
-                        shortHelp="Old-School RuneScape level information",
-                        fullHelp="Get an Old-School RuneScape character's level(s)",
-                    ),
-                    "rexp": seabird_pb2.CommandMetadata(
-                        name="rexp",
-                        shortHelp="Old-School RuneScape experience information",
-                        fullHelp="Get an Old-School RuneScape character's experience in a skill",
-                    ),
-                    "rrank": seabird_pb2.CommandMetadata(
-                        name="rrank",
-                        shortHelp="Old-School RuneScape rank information",
-                        fullHelp="Get an Old-School RuneScape character's rank in a skill",
-                    ),
-                },
-            )
-        )
 
         LOG.info("Connection established with seabird core at %s", config.host_port)
 
-        identity = response.identity
-        for event in stub.Events(seabird_pb2.EventsRequest(identity=identity)):
+        identity=seabird_pb2.Identity(
+            token=config.token,
+        )
+
+        for event in stub.StreamEvents(seabird_pb2.StreamEventsRequest(
+            identity=identity,
+            commands={
+                "rlvl": seabird_pb2.CommandMetadata(
+                    name="rlvl",
+                    short_help="Old-School RuneScape level information",
+                    full_help="Get an Old-School RuneScape character's level(s)",
+                ),
+                "rexp": seabird_pb2.CommandMetadata(
+                    name="rexp",
+                    short_help="Old-School RuneScape experience information",
+                    full_help="Get an Old-School RuneScape character's experience in a skill",
+                ),
+                "rrank": seabird_pb2.CommandMetadata(
+                    name="rrank",
+                    short_help="Old-School RuneScape rank information",
+                    full_help="Get an Old-School RuneScape character's rank in a skill",
+                ),
+            },
+        )):
             command = event.command
             if not command:
                 continue

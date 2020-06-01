@@ -223,7 +223,7 @@ def reply_to(stub, identity, event, message):
     stub.SendMessage.with_call(
         seabird_pb2.SendMessageRequest(
             identity=identity,
-            target=event.replyTo,
+            target=event.reply_to,
             message=f"{event.sender}: {message}",
         )
     )

@@ -13,14 +13,9 @@ class SeabirdStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.OpenSession = channel.unary_unary(
-                '/seabird.Seabird/OpenSession',
-                request_serializer=seabird__pb2.OpenSessionRequest.SerializeToString,
-                response_deserializer=seabird__pb2.OpenSessionResponse.FromString,
-                )
-        self.Events = channel.unary_stream(
-                '/seabird.Seabird/Events',
-                request_serializer=seabird__pb2.EventsRequest.SerializeToString,
+        self.StreamEvents = channel.unary_stream(
+                '/seabird.Seabird/StreamEvents',
+                request_serializer=seabird__pb2.StreamEventsRequest.SerializeToString,
                 response_deserializer=seabird__pb2.Event.FromString,
                 )
         self.SendMessage = channel.unary_unary(
@@ -33,21 +28,6 @@ class SeabirdStub(object):
                 request_serializer=seabird__pb2.SendRawMessageRequest.SerializeToString,
                 response_deserializer=seabird__pb2.SendRawMessageResponse.FromString,
                 )
-        self.ListChannels = channel.unary_unary(
-                '/seabird.Seabird/ListChannels',
-                request_serializer=seabird__pb2.ListChannelsRequest.SerializeToString,
-                response_deserializer=seabird__pb2.ListChannelsResponse.FromString,
-                )
-        self.GetChannelInfo = channel.unary_unary(
-                '/seabird.Seabird/GetChannelInfo',
-                request_serializer=seabird__pb2.ChannelInfoRequest.SerializeToString,
-                response_deserializer=seabird__pb2.ChannelInfoResponse.FromString,
-                )
-        self.SetChannelInfo = channel.unary_unary(
-                '/seabird.Seabird/SetChannelInfo',
-                request_serializer=seabird__pb2.SetChannelInfoRequest.SerializeToString,
-                response_deserializer=seabird__pb2.SetChannelInfoResponse.FromString,
-                )
         self.JoinChannel = channel.unary_unary(
                 '/seabird.Seabird/JoinChannel',
                 request_serializer=seabird__pb2.JoinChannelRequest.SerializeToString,
@@ -58,58 +38,55 @@ class SeabirdStub(object):
                 request_serializer=seabird__pb2.LeaveChannelRequest.SerializeToString,
                 response_deserializer=seabird__pb2.LeaveChannelResponse.FromString,
                 )
-        self.ListPlugins = channel.unary_unary(
-                '/seabird.Seabird/ListPlugins',
-                request_serializer=seabird__pb2.ListPluginsRequest.SerializeToString,
-                response_deserializer=seabird__pb2.ListPluginsResponse.FromString,
+        self.ListChannels = channel.unary_unary(
+                '/seabird.Seabird/ListChannels',
+                request_serializer=seabird__pb2.ListChannelsRequest.SerializeToString,
+                response_deserializer=seabird__pb2.ListChannelsResponse.FromString,
                 )
-        self.GetPluginInfo = channel.unary_unary(
-                '/seabird.Seabird/GetPluginInfo',
-                request_serializer=seabird__pb2.PluginInfoRequest.SerializeToString,
-                response_deserializer=seabird__pb2.PluginInfoResponse.FromString,
+        self.GetChannelInfo = channel.unary_unary(
+                '/seabird.Seabird/GetChannelInfo',
+                request_serializer=seabird__pb2.ChannelInfoRequest.SerializeToString,
+                response_deserializer=seabird__pb2.ChannelInfoResponse.FromString,
+                )
+        self.SetChannelTopic = channel.unary_unary(
+                '/seabird.Seabird/SetChannelTopic',
+                request_serializer=seabird__pb2.SetChannelTopicRequest.SerializeToString,
+                response_deserializer=seabird__pb2.SetChannelTopicResponse.FromString,
+                )
+        self.ListStreams = channel.unary_unary(
+                '/seabird.Seabird/ListStreams',
+                request_serializer=seabird__pb2.ListStreamsRequest.SerializeToString,
+                response_deserializer=seabird__pb2.ListStreamsResponse.FromString,
+                )
+        self.GetStreamInfo = channel.unary_unary(
+                '/seabird.Seabird/GetStreamInfo',
+                request_serializer=seabird__pb2.StreamInfoRequest.SerializeToString,
+                response_deserializer=seabird__pb2.StreamInfoResponse.FromString,
+                )
+        self.GetCoreInfo = channel.unary_unary(
+                '/seabird.Seabird/GetCoreInfo',
+                request_serializer=seabird__pb2.CoreInfoRequest.SerializeToString,
+                response_deserializer=seabird__pb2.CoreInfoResponse.FromString,
                 )
 
 
 class SeabirdServicer(object):
     """Missing associated documentation comment in .proto file"""
 
-    def OpenSession(self, request, context):
-        """Missing associated documentation comment in .proto file"""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def Events(self, request, context):
+    def StreamEvents(self, request, context):
         """Missing associated documentation comment in .proto file"""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def SendMessage(self, request, context):
-        """Missing associated documentation comment in .proto file"""
+        """Chat actions
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def SendRawMessage(self, request, context):
-        """Missing associated documentation comment in .proto file"""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def ListChannels(self, request, context):
-        """Missing associated documentation comment in .proto file"""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def GetChannelInfo(self, request, context):
-        """Missing associated documentation comment in .proto file"""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def SetChannelInfo(self, request, context):
         """Missing associated documentation comment in .proto file"""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -127,13 +104,39 @@ class SeabirdServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def ListPlugins(self, request, context):
+    def ListChannels(self, request, context):
+        """Chat connection introspection
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetChannelInfo(self, request, context):
         """Missing associated documentation comment in .proto file"""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetPluginInfo(self, request, context):
+    def SetChannelTopic(self, request, context):
+        """Missing associated documentation comment in .proto file"""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ListStreams(self, request, context):
+        """Seabird introspection
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetStreamInfo(self, request, context):
+        """Missing associated documentation comment in .proto file"""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetCoreInfo(self, request, context):
         """Missing associated documentation comment in .proto file"""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -142,14 +145,9 @@ class SeabirdServicer(object):
 
 def add_SeabirdServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'OpenSession': grpc.unary_unary_rpc_method_handler(
-                    servicer.OpenSession,
-                    request_deserializer=seabird__pb2.OpenSessionRequest.FromString,
-                    response_serializer=seabird__pb2.OpenSessionResponse.SerializeToString,
-            ),
-            'Events': grpc.unary_stream_rpc_method_handler(
-                    servicer.Events,
-                    request_deserializer=seabird__pb2.EventsRequest.FromString,
+            'StreamEvents': grpc.unary_stream_rpc_method_handler(
+                    servicer.StreamEvents,
+                    request_deserializer=seabird__pb2.StreamEventsRequest.FromString,
                     response_serializer=seabird__pb2.Event.SerializeToString,
             ),
             'SendMessage': grpc.unary_unary_rpc_method_handler(
@@ -162,21 +160,6 @@ def add_SeabirdServicer_to_server(servicer, server):
                     request_deserializer=seabird__pb2.SendRawMessageRequest.FromString,
                     response_serializer=seabird__pb2.SendRawMessageResponse.SerializeToString,
             ),
-            'ListChannels': grpc.unary_unary_rpc_method_handler(
-                    servicer.ListChannels,
-                    request_deserializer=seabird__pb2.ListChannelsRequest.FromString,
-                    response_serializer=seabird__pb2.ListChannelsResponse.SerializeToString,
-            ),
-            'GetChannelInfo': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetChannelInfo,
-                    request_deserializer=seabird__pb2.ChannelInfoRequest.FromString,
-                    response_serializer=seabird__pb2.ChannelInfoResponse.SerializeToString,
-            ),
-            'SetChannelInfo': grpc.unary_unary_rpc_method_handler(
-                    servicer.SetChannelInfo,
-                    request_deserializer=seabird__pb2.SetChannelInfoRequest.FromString,
-                    response_serializer=seabird__pb2.SetChannelInfoResponse.SerializeToString,
-            ),
             'JoinChannel': grpc.unary_unary_rpc_method_handler(
                     servicer.JoinChannel,
                     request_deserializer=seabird__pb2.JoinChannelRequest.FromString,
@@ -187,15 +170,35 @@ def add_SeabirdServicer_to_server(servicer, server):
                     request_deserializer=seabird__pb2.LeaveChannelRequest.FromString,
                     response_serializer=seabird__pb2.LeaveChannelResponse.SerializeToString,
             ),
-            'ListPlugins': grpc.unary_unary_rpc_method_handler(
-                    servicer.ListPlugins,
-                    request_deserializer=seabird__pb2.ListPluginsRequest.FromString,
-                    response_serializer=seabird__pb2.ListPluginsResponse.SerializeToString,
+            'ListChannels': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListChannels,
+                    request_deserializer=seabird__pb2.ListChannelsRequest.FromString,
+                    response_serializer=seabird__pb2.ListChannelsResponse.SerializeToString,
             ),
-            'GetPluginInfo': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetPluginInfo,
-                    request_deserializer=seabird__pb2.PluginInfoRequest.FromString,
-                    response_serializer=seabird__pb2.PluginInfoResponse.SerializeToString,
+            'GetChannelInfo': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetChannelInfo,
+                    request_deserializer=seabird__pb2.ChannelInfoRequest.FromString,
+                    response_serializer=seabird__pb2.ChannelInfoResponse.SerializeToString,
+            ),
+            'SetChannelTopic': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetChannelTopic,
+                    request_deserializer=seabird__pb2.SetChannelTopicRequest.FromString,
+                    response_serializer=seabird__pb2.SetChannelTopicResponse.SerializeToString,
+            ),
+            'ListStreams': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListStreams,
+                    request_deserializer=seabird__pb2.ListStreamsRequest.FromString,
+                    response_serializer=seabird__pb2.ListStreamsResponse.SerializeToString,
+            ),
+            'GetStreamInfo': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetStreamInfo,
+                    request_deserializer=seabird__pb2.StreamInfoRequest.FromString,
+                    response_serializer=seabird__pb2.StreamInfoResponse.SerializeToString,
+            ),
+            'GetCoreInfo': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetCoreInfo,
+                    request_deserializer=seabird__pb2.CoreInfoRequest.FromString,
+                    response_serializer=seabird__pb2.CoreInfoResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -208,7 +211,7 @@ class Seabird(object):
     """Missing associated documentation comment in .proto file"""
 
     @staticmethod
-    def OpenSession(request,
+    def StreamEvents(request,
             target,
             options=(),
             channel_credentials=None,
@@ -217,24 +220,8 @@ class Seabird(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/seabird.Seabird/OpenSession',
-            seabird__pb2.OpenSessionRequest.SerializeToString,
-            seabird__pb2.OpenSessionResponse.FromString,
-            options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def Events(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_stream(request, target, '/seabird.Seabird/Events',
-            seabird__pb2.EventsRequest.SerializeToString,
+        return grpc.experimental.unary_stream(request, target, '/seabird.Seabird/StreamEvents',
+            seabird__pb2.StreamEventsRequest.SerializeToString,
             seabird__pb2.Event.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)
@@ -272,54 +259,6 @@ class Seabird(object):
             call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def ListChannels(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/seabird.Seabird/ListChannels',
-            seabird__pb2.ListChannelsRequest.SerializeToString,
-            seabird__pb2.ListChannelsResponse.FromString,
-            options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def GetChannelInfo(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/seabird.Seabird/GetChannelInfo',
-            seabird__pb2.ChannelInfoRequest.SerializeToString,
-            seabird__pb2.ChannelInfoResponse.FromString,
-            options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def SetChannelInfo(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/seabird.Seabird/SetChannelInfo',
-            seabird__pb2.SetChannelInfoRequest.SerializeToString,
-            seabird__pb2.SetChannelInfoResponse.FromString,
-            options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
     def JoinChannel(request,
             target,
             options=(),
@@ -352,7 +291,7 @@ class Seabird(object):
             call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def ListPlugins(request,
+    def ListChannels(request,
             target,
             options=(),
             channel_credentials=None,
@@ -361,14 +300,14 @@ class Seabird(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/seabird.Seabird/ListPlugins',
-            seabird__pb2.ListPluginsRequest.SerializeToString,
-            seabird__pb2.ListPluginsResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/seabird.Seabird/ListChannels',
+            seabird__pb2.ListChannelsRequest.SerializeToString,
+            seabird__pb2.ListChannelsResponse.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def GetPluginInfo(request,
+    def GetChannelInfo(request,
             target,
             options=(),
             channel_credentials=None,
@@ -377,8 +316,72 @@ class Seabird(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/seabird.Seabird/GetPluginInfo',
-            seabird__pb2.PluginInfoRequest.SerializeToString,
-            seabird__pb2.PluginInfoResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/seabird.Seabird/GetChannelInfo',
+            seabird__pb2.ChannelInfoRequest.SerializeToString,
+            seabird__pb2.ChannelInfoResponse.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetChannelTopic(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/seabird.Seabird/SetChannelTopic',
+            seabird__pb2.SetChannelTopicRequest.SerializeToString,
+            seabird__pb2.SetChannelTopicResponse.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ListStreams(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/seabird.Seabird/ListStreams',
+            seabird__pb2.ListStreamsRequest.SerializeToString,
+            seabird__pb2.ListStreamsResponse.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetStreamInfo(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/seabird.Seabird/GetStreamInfo',
+            seabird__pb2.StreamInfoRequest.SerializeToString,
+            seabird__pb2.StreamInfoResponse.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetCoreInfo(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/seabird.Seabird/GetCoreInfo',
+            seabird__pb2.CoreInfoRequest.SerializeToString,
+            seabird__pb2.CoreInfoResponse.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)
