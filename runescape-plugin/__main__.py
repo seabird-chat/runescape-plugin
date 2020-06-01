@@ -42,21 +42,8 @@ def handle_rank(stub, identity, command) -> None:
     )
 
 
-def parse_args():
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "--verbose", "-v", action="store_true", help="Log more verbosely",
-    )
-    return parser.parse_args()
-
-
 def main():
-    args = parse_args()
-
-    if args.verbose:
-        LOG.setLevel("DEBUG")
-    else:
-        LOG.setLevel("INFO")
+    LOG.setLevel(os.getenv("LOG_LEVEL", "INFO"))
 
     host_port = os.getenv("HOST_PORT")
     if host_port is None:
