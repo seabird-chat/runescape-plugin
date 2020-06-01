@@ -18,11 +18,22 @@ Experience information:
 <prefix>rexp <server> <skill>[, <skill>...]
 ```
 
+## Configuration
+
+Configuration is passed via environment variables. You can also set values with a `.env` file.
+
+Expected values:
+`HOST_PORT`: host and port to connect to
+`TOKEN`: your core authentication token
+
 ## Usage
 
 ```
 $ pipenv shell
 $ pipenv install
+
+# Set configuration options
+$ $EDITOR .env
 $ cd runescape-plugin
 $ python3 .
 ```

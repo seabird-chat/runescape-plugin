@@ -6,1483 +6,2190 @@ from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
 from google.protobuf import reflection as _reflection
 from google.protobuf import symbol_database as _symbol_database
+
 # @@protoc_insertion_point(imports)
 
 _sym_db = _symbol_database.Default()
 
 
-
-
 DESCRIPTOR = _descriptor.FileDescriptor(
-  name='seabird.proto',
-  package='seabird',
-  syntax='proto3',
-  serialized_options=b'Z\004.;pb',
-  serialized_pb=b'\n\rseabird.proto\x12\x07seabird\")\n\x08Identity\x12\x0f\n\x05token\x18\x01 \x01(\tH\x00\x42\x0c\n\nAuthMethod\"\xc3\x01\n\x13StreamEventsRequest\x12#\n\x08identity\x18\x01 \x01(\x0b\x32\x11.seabird.Identity\x12<\n\x08\x63ommands\x18\x02 \x03(\x0b\x32*.seabird.StreamEventsRequest.CommandsEntry\x1aI\n\rCommandsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\'\n\x05value\x18\x02 \x01(\x0b\x32\x18.seabird.CommandMetadata:\x02\x38\x01\"F\n\x0f\x43ommandMetadata\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x12\n\nshort_help\x18\x02 \x01(\t\x12\x11\n\tfull_help\x18\x03 \x01(\t\"\xc7\x01\n\x05\x45vent\x12(\n\x07message\x18\x01 \x01(\x0b\x32\x15.seabird.MessageEventH\x00\x12\x37\n\x0fprivate_message\x18\x02 \x01(\x0b\x32\x1c.seabird.PrivateMessageEventH\x00\x12(\n\x07mention\x18\x03 \x01(\x0b\x32\x15.seabird.MentionEventH\x00\x12(\n\x07\x63ommand\x18\x04 \x01(\x0b\x32\x15.seabird.CommandEventH\x00\x42\x07\n\x05inner\"A\n\x0cMessageEvent\x12\x10\n\x08reply_to\x18\x01 \x01(\t\x12\x0e\n\x06sender\x18\x02 \x01(\t\x12\x0f\n\x07message\x18\x03 \x01(\t\"H\n\x13PrivateMessageEvent\x12\x10\n\x08reply_to\x18\x01 \x01(\t\x12\x0e\n\x06sender\x18\x02 \x01(\t\x12\x0f\n\x07message\x18\x03 \x01(\t\"A\n\x0cMentionEvent\x12\x10\n\x08reply_to\x18\x01 \x01(\t\x12\x0e\n\x06sender\x18\x02 \x01(\t\x12\x0f\n\x07message\x18\x03 \x01(\t\"N\n\x0c\x43ommandEvent\x12\x10\n\x08reply_to\x18\x01 \x01(\t\x12\x0e\n\x06sender\x18\x02 \x01(\t\x12\x0f\n\x07\x63ommand\x18\x03 \x01(\t\x12\x0b\n\x03\x61rg\x18\x04 \x01(\t\"Z\n\x12SendMessageRequest\x12#\n\x08identity\x18\x01 \x01(\x0b\x32\x11.seabird.Identity\x12\x0e\n\x06target\x18\x02 \x01(\t\x12\x0f\n\x07message\x18\x03 \x01(\t\"\x15\n\x13SendMessageResponse\"]\n\x15SendRawMessageRequest\x12#\n\x08identity\x18\x01 \x01(\x0b\x32\x11.seabird.Identity\x12\x0f\n\x07\x63ommand\x18\x02 \x01(\t\x12\x0e\n\x06params\x18\x03 \x03(\t\"\x18\n\x16SendRawMessageResponse\":\n\x13ListChannelsRequest\x12#\n\x08identity\x18\x01 \x01(\x0b\x32\x11.seabird.Identity\"%\n\x14ListChannelsResponse\x12\r\n\x05names\x18\x01 \x03(\t\"G\n\x12\x43hannelInfoRequest\x12#\n\x08identity\x18\x01 \x01(\x0b\x32\x11.seabird.Identity\x12\x0c\n\x04name\x18\x02 \x01(\t\"\x14\n\x04User\x12\x0c\n\x04nick\x18\x01 \x01(\t\"Z\n\x16SetChannelTopicRequest\x12#\n\x08identity\x18\x01 \x01(\x0b\x32\x11.seabird.Identity\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\r\n\x05topic\x18\x03 \x01(\t\"\x19\n\x17SetChannelTopicResponse\"P\n\x13\x43hannelInfoResponse\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05topic\x18\x02 \x01(\t\x12\x1c\n\x05users\x18\x03 \x03(\x0b\x32\r.seabird.User\"G\n\x12JoinChannelRequest\x12#\n\x08identity\x18\x01 \x01(\x0b\x32\x11.seabird.Identity\x12\x0c\n\x04name\x18\x02 \x01(\t\"\x15\n\x13JoinChannelResponse\"Y\n\x13LeaveChannelRequest\x12#\n\x08identity\x18\x01 \x01(\x0b\x32\x11.seabird.Identity\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0f\n\x07message\x18\x03 \x01(\t\"\x16\n\x14LeaveChannelResponse\"9\n\x12ListStreamsRequest\x12#\n\x08identity\x18\x01 \x01(\x0b\x32\x11.seabird.Identity\")\n\x13ListStreamsResponse\x12\x12\n\nstream_ids\x18\x01 \x03(\t\"K\n\x11StreamInfoRequest\x12#\n\x08identity\x18\x01 \x01(\x0b\x32\x11.seabird.Identity\x12\x11\n\tstream_id\x18\x02 \x01(\t\"\xeb\x01\n\x12StreamInfoResponse\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0b\n\x03tag\x18\x02 \x01(\t\x12;\n\x08\x63ommands\x18\x03 \x03(\x0b\x32).seabird.StreamInfoResponse.CommandsEntry\x12\x16\n\x0eremote_address\x18\x04 \x01(\t\x12\x1c\n\x14\x63onnection_timestamp\x18\x05 \x01(\x03\x1aI\n\rCommandsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\'\n\x05value\x18\x02 \x01(\x0b\x32\x18.seabird.CommandMetadata:\x02\x38\x01\"6\n\x0f\x43oreInfoRequest\x12#\n\x08identity\x18\x01 \x01(\x0b\x32\x11.seabird.Identity\"C\n\x10\x43oreInfoResponse\x12\x14\n\x0c\x63urrent_nick\x18\x01 \x01(\t\x12\x19\n\x11startup_timestamp\x18\x02 \x01(\x03\x32\xc5\x06\n\x07Seabird\x12>\n\x0cStreamEvents\x12\x1c.seabird.StreamEventsRequest\x1a\x0e.seabird.Event0\x01\x12H\n\x0bSendMessage\x12\x1b.seabird.SendMessageRequest\x1a\x1c.seabird.SendMessageResponse\x12Q\n\x0eSendRawMessage\x12\x1e.seabird.SendRawMessageRequest\x1a\x1f.seabird.SendRawMessageResponse\x12H\n\x0bJoinChannel\x12\x1b.seabird.JoinChannelRequest\x1a\x1c.seabird.JoinChannelResponse\x12K\n\x0cLeaveChannel\x12\x1c.seabird.LeaveChannelRequest\x1a\x1d.seabird.LeaveChannelResponse\x12K\n\x0cListChannels\x12\x1c.seabird.ListChannelsRequest\x1a\x1d.seabird.ListChannelsResponse\x12K\n\x0eGetChannelInfo\x12\x1b.seabird.ChannelInfoRequest\x1a\x1c.seabird.ChannelInfoResponse\x12T\n\x0fSetChannelTopic\x12\x1f.seabird.SetChannelTopicRequest\x1a .seabird.SetChannelTopicResponse\x12H\n\x0bListStreams\x12\x1b.seabird.ListStreamsRequest\x1a\x1c.seabird.ListStreamsResponse\x12H\n\rGetStreamInfo\x12\x1a.seabird.StreamInfoRequest\x1a\x1b.seabird.StreamInfoResponse\x12\x42\n\x0bGetCoreInfo\x12\x18.seabird.CoreInfoRequest\x1a\x19.seabird.CoreInfoResponseB\x06Z\x04.;pbb\x06proto3'
+    name="seabird.proto",
+    package="seabird",
+    syntax="proto3",
+    serialized_options=b"Z\004.;pb",
+    serialized_pb=b'\n\rseabird.proto\x12\x07seabird")\n\x08Identity\x12\x0f\n\x05token\x18\x01 \x01(\tH\x00\x42\x0c\n\nAuthMethod"\xc3\x01\n\x13StreamEventsRequest\x12#\n\x08identity\x18\x01 \x01(\x0b\x32\x11.seabird.Identity\x12<\n\x08\x63ommands\x18\x02 \x03(\x0b\x32*.seabird.StreamEventsRequest.CommandsEntry\x1aI\n\rCommandsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\'\n\x05value\x18\x02 \x01(\x0b\x32\x18.seabird.CommandMetadata:\x02\x38\x01"F\n\x0f\x43ommandMetadata\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x12\n\nshort_help\x18\x02 \x01(\t\x12\x11\n\tfull_help\x18\x03 \x01(\t"\xc7\x01\n\x05\x45vent\x12(\n\x07message\x18\x01 \x01(\x0b\x32\x15.seabird.MessageEventH\x00\x12\x37\n\x0fprivate_message\x18\x02 \x01(\x0b\x32\x1c.seabird.PrivateMessageEventH\x00\x12(\n\x07mention\x18\x03 \x01(\x0b\x32\x15.seabird.MentionEventH\x00\x12(\n\x07\x63ommand\x18\x04 \x01(\x0b\x32\x15.seabird.CommandEventH\x00\x42\x07\n\x05inner"A\n\x0cMessageEvent\x12\x10\n\x08reply_to\x18\x01 \x01(\t\x12\x0e\n\x06sender\x18\x02 \x01(\t\x12\x0f\n\x07message\x18\x03 \x01(\t"H\n\x13PrivateMessageEvent\x12\x10\n\x08reply_to\x18\x01 \x01(\t\x12\x0e\n\x06sender\x18\x02 \x01(\t\x12\x0f\n\x07message\x18\x03 \x01(\t"A\n\x0cMentionEvent\x12\x10\n\x08reply_to\x18\x01 \x01(\t\x12\x0e\n\x06sender\x18\x02 \x01(\t\x12\x0f\n\x07message\x18\x03 \x01(\t"N\n\x0c\x43ommandEvent\x12\x10\n\x08reply_to\x18\x01 \x01(\t\x12\x0e\n\x06sender\x18\x02 \x01(\t\x12\x0f\n\x07\x63ommand\x18\x03 \x01(\t\x12\x0b\n\x03\x61rg\x18\x04 \x01(\t"Z\n\x12SendMessageRequest\x12#\n\x08identity\x18\x01 \x01(\x0b\x32\x11.seabird.Identity\x12\x0e\n\x06target\x18\x02 \x01(\t\x12\x0f\n\x07message\x18\x03 \x01(\t"\x15\n\x13SendMessageResponse"]\n\x15SendRawMessageRequest\x12#\n\x08identity\x18\x01 \x01(\x0b\x32\x11.seabird.Identity\x12\x0f\n\x07\x63ommand\x18\x02 \x01(\t\x12\x0e\n\x06params\x18\x03 \x03(\t"\x18\n\x16SendRawMessageResponse":\n\x13ListChannelsRequest\x12#\n\x08identity\x18\x01 \x01(\x0b\x32\x11.seabird.Identity"%\n\x14ListChannelsResponse\x12\r\n\x05names\x18\x01 \x03(\t"G\n\x12\x43hannelInfoRequest\x12#\n\x08identity\x18\x01 \x01(\x0b\x32\x11.seabird.Identity\x12\x0c\n\x04name\x18\x02 \x01(\t"\x14\n\x04User\x12\x0c\n\x04nick\x18\x01 \x01(\t"Z\n\x16SetChannelTopicRequest\x12#\n\x08identity\x18\x01 \x01(\x0b\x32\x11.seabird.Identity\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\r\n\x05topic\x18\x03 \x01(\t"\x19\n\x17SetChannelTopicResponse"P\n\x13\x43hannelInfoResponse\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05topic\x18\x02 \x01(\t\x12\x1c\n\x05users\x18\x03 \x03(\x0b\x32\r.seabird.User"G\n\x12JoinChannelRequest\x12#\n\x08identity\x18\x01 \x01(\x0b\x32\x11.seabird.Identity\x12\x0c\n\x04name\x18\x02 \x01(\t"\x15\n\x13JoinChannelResponse"Y\n\x13LeaveChannelRequest\x12#\n\x08identity\x18\x01 \x01(\x0b\x32\x11.seabird.Identity\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0f\n\x07message\x18\x03 \x01(\t"\x16\n\x14LeaveChannelResponse"9\n\x12ListStreamsRequest\x12#\n\x08identity\x18\x01 \x01(\x0b\x32\x11.seabird.Identity")\n\x13ListStreamsResponse\x12\x12\n\nstream_ids\x18\x01 \x03(\t"K\n\x11StreamInfoRequest\x12#\n\x08identity\x18\x01 \x01(\x0b\x32\x11.seabird.Identity\x12\x11\n\tstream_id\x18\x02 \x01(\t"\xeb\x01\n\x12StreamInfoResponse\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0b\n\x03tag\x18\x02 \x01(\t\x12;\n\x08\x63ommands\x18\x03 \x03(\x0b\x32).seabird.StreamInfoResponse.CommandsEntry\x12\x16\n\x0eremote_address\x18\x04 \x01(\t\x12\x1c\n\x14\x63onnection_timestamp\x18\x05 \x01(\x03\x1aI\n\rCommandsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\'\n\x05value\x18\x02 \x01(\x0b\x32\x18.seabird.CommandMetadata:\x02\x38\x01"6\n\x0f\x43oreInfoRequest\x12#\n\x08identity\x18\x01 \x01(\x0b\x32\x11.seabird.Identity"C\n\x10\x43oreInfoResponse\x12\x14\n\x0c\x63urrent_nick\x18\x01 \x01(\t\x12\x19\n\x11startup_timestamp\x18\x02 \x01(\x03\x32\xc5\x06\n\x07Seabird\x12>\n\x0cStreamEvents\x12\x1c.seabird.StreamEventsRequest\x1a\x0e.seabird.Event0\x01\x12H\n\x0bSendMessage\x12\x1b.seabird.SendMessageRequest\x1a\x1c.seabird.SendMessageResponse\x12Q\n\x0eSendRawMessage\x12\x1e.seabird.SendRawMessageRequest\x1a\x1f.seabird.SendRawMessageResponse\x12H\n\x0bJoinChannel\x12\x1b.seabird.JoinChannelRequest\x1a\x1c.seabird.JoinChannelResponse\x12K\n\x0cLeaveChannel\x12\x1c.seabird.LeaveChannelRequest\x1a\x1d.seabird.LeaveChannelResponse\x12K\n\x0cListChannels\x12\x1c.seabird.ListChannelsRequest\x1a\x1d.seabird.ListChannelsResponse\x12K\n\x0eGetChannelInfo\x12\x1b.seabird.ChannelInfoRequest\x1a\x1c.seabird.ChannelInfoResponse\x12T\n\x0fSetChannelTopic\x12\x1f.seabird.SetChannelTopicRequest\x1a .seabird.SetChannelTopicResponse\x12H\n\x0bListStreams\x12\x1b.seabird.ListStreamsRequest\x1a\x1c.seabird.ListStreamsResponse\x12H\n\rGetStreamInfo\x12\x1a.seabird.StreamInfoRequest\x1a\x1b.seabird.StreamInfoResponse\x12\x42\n\x0bGetCoreInfo\x12\x18.seabird.CoreInfoRequest\x1a\x19.seabird.CoreInfoResponseB\x06Z\x04.;pbb\x06proto3',
 )
 
 
-
-
 _IDENTITY = _descriptor.Descriptor(
-  name='Identity',
-  full_name='seabird.Identity',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='token', full_name='seabird.Identity.token', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-    _descriptor.OneofDescriptor(
-      name='AuthMethod', full_name='seabird.Identity.AuthMethod',
-      index=0, containing_type=None, fields=[]),
-  ],
-  serialized_start=26,
-  serialized_end=67,
+    name="Identity",
+    full_name="seabird.Identity",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="token",
+            full_name="seabird.Identity.token",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[
+        _descriptor.OneofDescriptor(
+            name="AuthMethod",
+            full_name="seabird.Identity.AuthMethod",
+            index=0,
+            containing_type=None,
+            fields=[],
+        ),
+    ],
+    serialized_start=26,
+    serialized_end=67,
 )
 
 
 _STREAMEVENTSREQUEST_COMMANDSENTRY = _descriptor.Descriptor(
-  name='CommandsEntry',
-  full_name='seabird.StreamEventsRequest.CommandsEntry',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='key', full_name='seabird.StreamEventsRequest.CommandsEntry.key', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='value', full_name='seabird.StreamEventsRequest.CommandsEntry.value', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=b'8\001',
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=192,
-  serialized_end=265,
+    name="CommandsEntry",
+    full_name="seabird.StreamEventsRequest.CommandsEntry",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="key",
+            full_name="seabird.StreamEventsRequest.CommandsEntry.key",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="value",
+            full_name="seabird.StreamEventsRequest.CommandsEntry.value",
+            index=1,
+            number=2,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=b"8\001",
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=192,
+    serialized_end=265,
 )
 
 _STREAMEVENTSREQUEST = _descriptor.Descriptor(
-  name='StreamEventsRequest',
-  full_name='seabird.StreamEventsRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='identity', full_name='seabird.StreamEventsRequest.identity', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='commands', full_name='seabird.StreamEventsRequest.commands', index=1,
-      number=2, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[_STREAMEVENTSREQUEST_COMMANDSENTRY, ],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=70,
-  serialized_end=265,
+    name="StreamEventsRequest",
+    full_name="seabird.StreamEventsRequest",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="identity",
+            full_name="seabird.StreamEventsRequest.identity",
+            index=0,
+            number=1,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="commands",
+            full_name="seabird.StreamEventsRequest.commands",
+            index=1,
+            number=2,
+            type=11,
+            cpp_type=10,
+            label=3,
+            has_default_value=False,
+            default_value=[],
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+    ],
+    extensions=[],
+    nested_types=[_STREAMEVENTSREQUEST_COMMANDSENTRY,],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=70,
+    serialized_end=265,
 )
 
 
 _COMMANDMETADATA = _descriptor.Descriptor(
-  name='CommandMetadata',
-  full_name='seabird.CommandMetadata',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='name', full_name='seabird.CommandMetadata.name', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='short_help', full_name='seabird.CommandMetadata.short_help', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='full_help', full_name='seabird.CommandMetadata.full_help', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=267,
-  serialized_end=337,
+    name="CommandMetadata",
+    full_name="seabird.CommandMetadata",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="name",
+            full_name="seabird.CommandMetadata.name",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="short_help",
+            full_name="seabird.CommandMetadata.short_help",
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="full_help",
+            full_name="seabird.CommandMetadata.full_help",
+            index=2,
+            number=3,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=267,
+    serialized_end=337,
 )
 
 
 _EVENT = _descriptor.Descriptor(
-  name='Event',
-  full_name='seabird.Event',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='message', full_name='seabird.Event.message', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='private_message', full_name='seabird.Event.private_message', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='mention', full_name='seabird.Event.mention', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='command', full_name='seabird.Event.command', index=3,
-      number=4, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-    _descriptor.OneofDescriptor(
-      name='inner', full_name='seabird.Event.inner',
-      index=0, containing_type=None, fields=[]),
-  ],
-  serialized_start=340,
-  serialized_end=539,
+    name="Event",
+    full_name="seabird.Event",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="message",
+            full_name="seabird.Event.message",
+            index=0,
+            number=1,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="private_message",
+            full_name="seabird.Event.private_message",
+            index=1,
+            number=2,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="mention",
+            full_name="seabird.Event.mention",
+            index=2,
+            number=3,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="command",
+            full_name="seabird.Event.command",
+            index=3,
+            number=4,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[
+        _descriptor.OneofDescriptor(
+            name="inner",
+            full_name="seabird.Event.inner",
+            index=0,
+            containing_type=None,
+            fields=[],
+        ),
+    ],
+    serialized_start=340,
+    serialized_end=539,
 )
 
 
 _MESSAGEEVENT = _descriptor.Descriptor(
-  name='MessageEvent',
-  full_name='seabird.MessageEvent',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='reply_to', full_name='seabird.MessageEvent.reply_to', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='sender', full_name='seabird.MessageEvent.sender', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='message', full_name='seabird.MessageEvent.message', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=541,
-  serialized_end=606,
+    name="MessageEvent",
+    full_name="seabird.MessageEvent",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="reply_to",
+            full_name="seabird.MessageEvent.reply_to",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="sender",
+            full_name="seabird.MessageEvent.sender",
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="message",
+            full_name="seabird.MessageEvent.message",
+            index=2,
+            number=3,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=541,
+    serialized_end=606,
 )
 
 
 _PRIVATEMESSAGEEVENT = _descriptor.Descriptor(
-  name='PrivateMessageEvent',
-  full_name='seabird.PrivateMessageEvent',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='reply_to', full_name='seabird.PrivateMessageEvent.reply_to', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='sender', full_name='seabird.PrivateMessageEvent.sender', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='message', full_name='seabird.PrivateMessageEvent.message', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=608,
-  serialized_end=680,
+    name="PrivateMessageEvent",
+    full_name="seabird.PrivateMessageEvent",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="reply_to",
+            full_name="seabird.PrivateMessageEvent.reply_to",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="sender",
+            full_name="seabird.PrivateMessageEvent.sender",
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="message",
+            full_name="seabird.PrivateMessageEvent.message",
+            index=2,
+            number=3,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=608,
+    serialized_end=680,
 )
 
 
 _MENTIONEVENT = _descriptor.Descriptor(
-  name='MentionEvent',
-  full_name='seabird.MentionEvent',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='reply_to', full_name='seabird.MentionEvent.reply_to', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='sender', full_name='seabird.MentionEvent.sender', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='message', full_name='seabird.MentionEvent.message', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=682,
-  serialized_end=747,
+    name="MentionEvent",
+    full_name="seabird.MentionEvent",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="reply_to",
+            full_name="seabird.MentionEvent.reply_to",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="sender",
+            full_name="seabird.MentionEvent.sender",
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="message",
+            full_name="seabird.MentionEvent.message",
+            index=2,
+            number=3,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=682,
+    serialized_end=747,
 )
 
 
 _COMMANDEVENT = _descriptor.Descriptor(
-  name='CommandEvent',
-  full_name='seabird.CommandEvent',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='reply_to', full_name='seabird.CommandEvent.reply_to', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='sender', full_name='seabird.CommandEvent.sender', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='command', full_name='seabird.CommandEvent.command', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='arg', full_name='seabird.CommandEvent.arg', index=3,
-      number=4, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=749,
-  serialized_end=827,
+    name="CommandEvent",
+    full_name="seabird.CommandEvent",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="reply_to",
+            full_name="seabird.CommandEvent.reply_to",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="sender",
+            full_name="seabird.CommandEvent.sender",
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="command",
+            full_name="seabird.CommandEvent.command",
+            index=2,
+            number=3,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="arg",
+            full_name="seabird.CommandEvent.arg",
+            index=3,
+            number=4,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=749,
+    serialized_end=827,
 )
 
 
 _SENDMESSAGEREQUEST = _descriptor.Descriptor(
-  name='SendMessageRequest',
-  full_name='seabird.SendMessageRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='identity', full_name='seabird.SendMessageRequest.identity', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='target', full_name='seabird.SendMessageRequest.target', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='message', full_name='seabird.SendMessageRequest.message', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=829,
-  serialized_end=919,
+    name="SendMessageRequest",
+    full_name="seabird.SendMessageRequest",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="identity",
+            full_name="seabird.SendMessageRequest.identity",
+            index=0,
+            number=1,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="target",
+            full_name="seabird.SendMessageRequest.target",
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="message",
+            full_name="seabird.SendMessageRequest.message",
+            index=2,
+            number=3,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=829,
+    serialized_end=919,
 )
 
 
 _SENDMESSAGERESPONSE = _descriptor.Descriptor(
-  name='SendMessageResponse',
-  full_name='seabird.SendMessageResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=921,
-  serialized_end=942,
+    name="SendMessageResponse",
+    full_name="seabird.SendMessageResponse",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=921,
+    serialized_end=942,
 )
 
 
 _SENDRAWMESSAGEREQUEST = _descriptor.Descriptor(
-  name='SendRawMessageRequest',
-  full_name='seabird.SendRawMessageRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='identity', full_name='seabird.SendRawMessageRequest.identity', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='command', full_name='seabird.SendRawMessageRequest.command', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='params', full_name='seabird.SendRawMessageRequest.params', index=2,
-      number=3, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=944,
-  serialized_end=1037,
+    name="SendRawMessageRequest",
+    full_name="seabird.SendRawMessageRequest",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="identity",
+            full_name="seabird.SendRawMessageRequest.identity",
+            index=0,
+            number=1,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="command",
+            full_name="seabird.SendRawMessageRequest.command",
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="params",
+            full_name="seabird.SendRawMessageRequest.params",
+            index=2,
+            number=3,
+            type=9,
+            cpp_type=9,
+            label=3,
+            has_default_value=False,
+            default_value=[],
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=944,
+    serialized_end=1037,
 )
 
 
 _SENDRAWMESSAGERESPONSE = _descriptor.Descriptor(
-  name='SendRawMessageResponse',
-  full_name='seabird.SendRawMessageResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1039,
-  serialized_end=1063,
+    name="SendRawMessageResponse",
+    full_name="seabird.SendRawMessageResponse",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=1039,
+    serialized_end=1063,
 )
 
 
 _LISTCHANNELSREQUEST = _descriptor.Descriptor(
-  name='ListChannelsRequest',
-  full_name='seabird.ListChannelsRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='identity', full_name='seabird.ListChannelsRequest.identity', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1065,
-  serialized_end=1123,
+    name="ListChannelsRequest",
+    full_name="seabird.ListChannelsRequest",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="identity",
+            full_name="seabird.ListChannelsRequest.identity",
+            index=0,
+            number=1,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=1065,
+    serialized_end=1123,
 )
 
 
 _LISTCHANNELSRESPONSE = _descriptor.Descriptor(
-  name='ListChannelsResponse',
-  full_name='seabird.ListChannelsResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='names', full_name='seabird.ListChannelsResponse.names', index=0,
-      number=1, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1125,
-  serialized_end=1162,
+    name="ListChannelsResponse",
+    full_name="seabird.ListChannelsResponse",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="names",
+            full_name="seabird.ListChannelsResponse.names",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=3,
+            has_default_value=False,
+            default_value=[],
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=1125,
+    serialized_end=1162,
 )
 
 
 _CHANNELINFOREQUEST = _descriptor.Descriptor(
-  name='ChannelInfoRequest',
-  full_name='seabird.ChannelInfoRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='identity', full_name='seabird.ChannelInfoRequest.identity', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='name', full_name='seabird.ChannelInfoRequest.name', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1164,
-  serialized_end=1235,
+    name="ChannelInfoRequest",
+    full_name="seabird.ChannelInfoRequest",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="identity",
+            full_name="seabird.ChannelInfoRequest.identity",
+            index=0,
+            number=1,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="name",
+            full_name="seabird.ChannelInfoRequest.name",
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=1164,
+    serialized_end=1235,
 )
 
 
 _USER = _descriptor.Descriptor(
-  name='User',
-  full_name='seabird.User',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='nick', full_name='seabird.User.nick', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1237,
-  serialized_end=1257,
+    name="User",
+    full_name="seabird.User",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="nick",
+            full_name="seabird.User.nick",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=1237,
+    serialized_end=1257,
 )
 
 
 _SETCHANNELTOPICREQUEST = _descriptor.Descriptor(
-  name='SetChannelTopicRequest',
-  full_name='seabird.SetChannelTopicRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='identity', full_name='seabird.SetChannelTopicRequest.identity', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='name', full_name='seabird.SetChannelTopicRequest.name', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='topic', full_name='seabird.SetChannelTopicRequest.topic', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1259,
-  serialized_end=1349,
+    name="SetChannelTopicRequest",
+    full_name="seabird.SetChannelTopicRequest",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="identity",
+            full_name="seabird.SetChannelTopicRequest.identity",
+            index=0,
+            number=1,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="name",
+            full_name="seabird.SetChannelTopicRequest.name",
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="topic",
+            full_name="seabird.SetChannelTopicRequest.topic",
+            index=2,
+            number=3,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=1259,
+    serialized_end=1349,
 )
 
 
 _SETCHANNELTOPICRESPONSE = _descriptor.Descriptor(
-  name='SetChannelTopicResponse',
-  full_name='seabird.SetChannelTopicResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1351,
-  serialized_end=1376,
+    name="SetChannelTopicResponse",
+    full_name="seabird.SetChannelTopicResponse",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=1351,
+    serialized_end=1376,
 )
 
 
 _CHANNELINFORESPONSE = _descriptor.Descriptor(
-  name='ChannelInfoResponse',
-  full_name='seabird.ChannelInfoResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='name', full_name='seabird.ChannelInfoResponse.name', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='topic', full_name='seabird.ChannelInfoResponse.topic', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='users', full_name='seabird.ChannelInfoResponse.users', index=2,
-      number=3, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1378,
-  serialized_end=1458,
+    name="ChannelInfoResponse",
+    full_name="seabird.ChannelInfoResponse",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="name",
+            full_name="seabird.ChannelInfoResponse.name",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="topic",
+            full_name="seabird.ChannelInfoResponse.topic",
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="users",
+            full_name="seabird.ChannelInfoResponse.users",
+            index=2,
+            number=3,
+            type=11,
+            cpp_type=10,
+            label=3,
+            has_default_value=False,
+            default_value=[],
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=1378,
+    serialized_end=1458,
 )
 
 
 _JOINCHANNELREQUEST = _descriptor.Descriptor(
-  name='JoinChannelRequest',
-  full_name='seabird.JoinChannelRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='identity', full_name='seabird.JoinChannelRequest.identity', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='name', full_name='seabird.JoinChannelRequest.name', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1460,
-  serialized_end=1531,
+    name="JoinChannelRequest",
+    full_name="seabird.JoinChannelRequest",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="identity",
+            full_name="seabird.JoinChannelRequest.identity",
+            index=0,
+            number=1,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="name",
+            full_name="seabird.JoinChannelRequest.name",
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=1460,
+    serialized_end=1531,
 )
 
 
 _JOINCHANNELRESPONSE = _descriptor.Descriptor(
-  name='JoinChannelResponse',
-  full_name='seabird.JoinChannelResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1533,
-  serialized_end=1554,
+    name="JoinChannelResponse",
+    full_name="seabird.JoinChannelResponse",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=1533,
+    serialized_end=1554,
 )
 
 
 _LEAVECHANNELREQUEST = _descriptor.Descriptor(
-  name='LeaveChannelRequest',
-  full_name='seabird.LeaveChannelRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='identity', full_name='seabird.LeaveChannelRequest.identity', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='name', full_name='seabird.LeaveChannelRequest.name', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='message', full_name='seabird.LeaveChannelRequest.message', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1556,
-  serialized_end=1645,
+    name="LeaveChannelRequest",
+    full_name="seabird.LeaveChannelRequest",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="identity",
+            full_name="seabird.LeaveChannelRequest.identity",
+            index=0,
+            number=1,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="name",
+            full_name="seabird.LeaveChannelRequest.name",
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="message",
+            full_name="seabird.LeaveChannelRequest.message",
+            index=2,
+            number=3,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=1556,
+    serialized_end=1645,
 )
 
 
 _LEAVECHANNELRESPONSE = _descriptor.Descriptor(
-  name='LeaveChannelResponse',
-  full_name='seabird.LeaveChannelResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1647,
-  serialized_end=1669,
+    name="LeaveChannelResponse",
+    full_name="seabird.LeaveChannelResponse",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=1647,
+    serialized_end=1669,
 )
 
 
 _LISTSTREAMSREQUEST = _descriptor.Descriptor(
-  name='ListStreamsRequest',
-  full_name='seabird.ListStreamsRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='identity', full_name='seabird.ListStreamsRequest.identity', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1671,
-  serialized_end=1728,
+    name="ListStreamsRequest",
+    full_name="seabird.ListStreamsRequest",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="identity",
+            full_name="seabird.ListStreamsRequest.identity",
+            index=0,
+            number=1,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=1671,
+    serialized_end=1728,
 )
 
 
 _LISTSTREAMSRESPONSE = _descriptor.Descriptor(
-  name='ListStreamsResponse',
-  full_name='seabird.ListStreamsResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='stream_ids', full_name='seabird.ListStreamsResponse.stream_ids', index=0,
-      number=1, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1730,
-  serialized_end=1771,
+    name="ListStreamsResponse",
+    full_name="seabird.ListStreamsResponse",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="stream_ids",
+            full_name="seabird.ListStreamsResponse.stream_ids",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=3,
+            has_default_value=False,
+            default_value=[],
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=1730,
+    serialized_end=1771,
 )
 
 
 _STREAMINFOREQUEST = _descriptor.Descriptor(
-  name='StreamInfoRequest',
-  full_name='seabird.StreamInfoRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='identity', full_name='seabird.StreamInfoRequest.identity', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='stream_id', full_name='seabird.StreamInfoRequest.stream_id', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1773,
-  serialized_end=1848,
+    name="StreamInfoRequest",
+    full_name="seabird.StreamInfoRequest",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="identity",
+            full_name="seabird.StreamInfoRequest.identity",
+            index=0,
+            number=1,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="stream_id",
+            full_name="seabird.StreamInfoRequest.stream_id",
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=1773,
+    serialized_end=1848,
 )
 
 
 _STREAMINFORESPONSE_COMMANDSENTRY = _descriptor.Descriptor(
-  name='CommandsEntry',
-  full_name='seabird.StreamInfoResponse.CommandsEntry',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='key', full_name='seabird.StreamInfoResponse.CommandsEntry.key', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='value', full_name='seabird.StreamInfoResponse.CommandsEntry.value', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=b'8\001',
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=192,
-  serialized_end=265,
+    name="CommandsEntry",
+    full_name="seabird.StreamInfoResponse.CommandsEntry",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="key",
+            full_name="seabird.StreamInfoResponse.CommandsEntry.key",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="value",
+            full_name="seabird.StreamInfoResponse.CommandsEntry.value",
+            index=1,
+            number=2,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=b"8\001",
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=192,
+    serialized_end=265,
 )
 
 _STREAMINFORESPONSE = _descriptor.Descriptor(
-  name='StreamInfoResponse',
-  full_name='seabird.StreamInfoResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='id', full_name='seabird.StreamInfoResponse.id', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='tag', full_name='seabird.StreamInfoResponse.tag', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='commands', full_name='seabird.StreamInfoResponse.commands', index=2,
-      number=3, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='remote_address', full_name='seabird.StreamInfoResponse.remote_address', index=3,
-      number=4, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='connection_timestamp', full_name='seabird.StreamInfoResponse.connection_timestamp', index=4,
-      number=5, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[_STREAMINFORESPONSE_COMMANDSENTRY, ],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1851,
-  serialized_end=2086,
+    name="StreamInfoResponse",
+    full_name="seabird.StreamInfoResponse",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="id",
+            full_name="seabird.StreamInfoResponse.id",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="tag",
+            full_name="seabird.StreamInfoResponse.tag",
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="commands",
+            full_name="seabird.StreamInfoResponse.commands",
+            index=2,
+            number=3,
+            type=11,
+            cpp_type=10,
+            label=3,
+            has_default_value=False,
+            default_value=[],
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="remote_address",
+            full_name="seabird.StreamInfoResponse.remote_address",
+            index=3,
+            number=4,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="connection_timestamp",
+            full_name="seabird.StreamInfoResponse.connection_timestamp",
+            index=4,
+            number=5,
+            type=3,
+            cpp_type=2,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+    ],
+    extensions=[],
+    nested_types=[_STREAMINFORESPONSE_COMMANDSENTRY,],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=1851,
+    serialized_end=2086,
 )
 
 
 _COREINFOREQUEST = _descriptor.Descriptor(
-  name='CoreInfoRequest',
-  full_name='seabird.CoreInfoRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='identity', full_name='seabird.CoreInfoRequest.identity', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2088,
-  serialized_end=2142,
+    name="CoreInfoRequest",
+    full_name="seabird.CoreInfoRequest",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="identity",
+            full_name="seabird.CoreInfoRequest.identity",
+            index=0,
+            number=1,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=2088,
+    serialized_end=2142,
 )
 
 
 _COREINFORESPONSE = _descriptor.Descriptor(
-  name='CoreInfoResponse',
-  full_name='seabird.CoreInfoResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='current_nick', full_name='seabird.CoreInfoResponse.current_nick', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='startup_timestamp', full_name='seabird.CoreInfoResponse.startup_timestamp', index=1,
-      number=2, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2144,
-  serialized_end=2211,
+    name="CoreInfoResponse",
+    full_name="seabird.CoreInfoResponse",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="current_nick",
+            full_name="seabird.CoreInfoResponse.current_nick",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="startup_timestamp",
+            full_name="seabird.CoreInfoResponse.startup_timestamp",
+            index=1,
+            number=2,
+            type=3,
+            cpp_type=2,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto3",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=2144,
+    serialized_end=2211,
 )
 
-_IDENTITY.oneofs_by_name['AuthMethod'].fields.append(
-  _IDENTITY.fields_by_name['token'])
-_IDENTITY.fields_by_name['token'].containing_oneof = _IDENTITY.oneofs_by_name['AuthMethod']
-_STREAMEVENTSREQUEST_COMMANDSENTRY.fields_by_name['value'].message_type = _COMMANDMETADATA
+_IDENTITY.oneofs_by_name["AuthMethod"].fields.append(_IDENTITY.fields_by_name["token"])
+_IDENTITY.fields_by_name["token"].containing_oneof = _IDENTITY.oneofs_by_name[
+    "AuthMethod"
+]
+_STREAMEVENTSREQUEST_COMMANDSENTRY.fields_by_name[
+    "value"
+].message_type = _COMMANDMETADATA
 _STREAMEVENTSREQUEST_COMMANDSENTRY.containing_type = _STREAMEVENTSREQUEST
-_STREAMEVENTSREQUEST.fields_by_name['identity'].message_type = _IDENTITY
-_STREAMEVENTSREQUEST.fields_by_name['commands'].message_type = _STREAMEVENTSREQUEST_COMMANDSENTRY
-_EVENT.fields_by_name['message'].message_type = _MESSAGEEVENT
-_EVENT.fields_by_name['private_message'].message_type = _PRIVATEMESSAGEEVENT
-_EVENT.fields_by_name['mention'].message_type = _MENTIONEVENT
-_EVENT.fields_by_name['command'].message_type = _COMMANDEVENT
-_EVENT.oneofs_by_name['inner'].fields.append(
-  _EVENT.fields_by_name['message'])
-_EVENT.fields_by_name['message'].containing_oneof = _EVENT.oneofs_by_name['inner']
-_EVENT.oneofs_by_name['inner'].fields.append(
-  _EVENT.fields_by_name['private_message'])
-_EVENT.fields_by_name['private_message'].containing_oneof = _EVENT.oneofs_by_name['inner']
-_EVENT.oneofs_by_name['inner'].fields.append(
-  _EVENT.fields_by_name['mention'])
-_EVENT.fields_by_name['mention'].containing_oneof = _EVENT.oneofs_by_name['inner']
-_EVENT.oneofs_by_name['inner'].fields.append(
-  _EVENT.fields_by_name['command'])
-_EVENT.fields_by_name['command'].containing_oneof = _EVENT.oneofs_by_name['inner']
-_SENDMESSAGEREQUEST.fields_by_name['identity'].message_type = _IDENTITY
-_SENDRAWMESSAGEREQUEST.fields_by_name['identity'].message_type = _IDENTITY
-_LISTCHANNELSREQUEST.fields_by_name['identity'].message_type = _IDENTITY
-_CHANNELINFOREQUEST.fields_by_name['identity'].message_type = _IDENTITY
-_SETCHANNELTOPICREQUEST.fields_by_name['identity'].message_type = _IDENTITY
-_CHANNELINFORESPONSE.fields_by_name['users'].message_type = _USER
-_JOINCHANNELREQUEST.fields_by_name['identity'].message_type = _IDENTITY
-_LEAVECHANNELREQUEST.fields_by_name['identity'].message_type = _IDENTITY
-_LISTSTREAMSREQUEST.fields_by_name['identity'].message_type = _IDENTITY
-_STREAMINFOREQUEST.fields_by_name['identity'].message_type = _IDENTITY
-_STREAMINFORESPONSE_COMMANDSENTRY.fields_by_name['value'].message_type = _COMMANDMETADATA
+_STREAMEVENTSREQUEST.fields_by_name["identity"].message_type = _IDENTITY
+_STREAMEVENTSREQUEST.fields_by_name[
+    "commands"
+].message_type = _STREAMEVENTSREQUEST_COMMANDSENTRY
+_EVENT.fields_by_name["message"].message_type = _MESSAGEEVENT
+_EVENT.fields_by_name["private_message"].message_type = _PRIVATEMESSAGEEVENT
+_EVENT.fields_by_name["mention"].message_type = _MENTIONEVENT
+_EVENT.fields_by_name["command"].message_type = _COMMANDEVENT
+_EVENT.oneofs_by_name["inner"].fields.append(_EVENT.fields_by_name["message"])
+_EVENT.fields_by_name["message"].containing_oneof = _EVENT.oneofs_by_name["inner"]
+_EVENT.oneofs_by_name["inner"].fields.append(_EVENT.fields_by_name["private_message"])
+_EVENT.fields_by_name["private_message"].containing_oneof = _EVENT.oneofs_by_name[
+    "inner"
+]
+_EVENT.oneofs_by_name["inner"].fields.append(_EVENT.fields_by_name["mention"])
+_EVENT.fields_by_name["mention"].containing_oneof = _EVENT.oneofs_by_name["inner"]
+_EVENT.oneofs_by_name["inner"].fields.append(_EVENT.fields_by_name["command"])
+_EVENT.fields_by_name["command"].containing_oneof = _EVENT.oneofs_by_name["inner"]
+_SENDMESSAGEREQUEST.fields_by_name["identity"].message_type = _IDENTITY
+_SENDRAWMESSAGEREQUEST.fields_by_name["identity"].message_type = _IDENTITY
+_LISTCHANNELSREQUEST.fields_by_name["identity"].message_type = _IDENTITY
+_CHANNELINFOREQUEST.fields_by_name["identity"].message_type = _IDENTITY
+_SETCHANNELTOPICREQUEST.fields_by_name["identity"].message_type = _IDENTITY
+_CHANNELINFORESPONSE.fields_by_name["users"].message_type = _USER
+_JOINCHANNELREQUEST.fields_by_name["identity"].message_type = _IDENTITY
+_LEAVECHANNELREQUEST.fields_by_name["identity"].message_type = _IDENTITY
+_LISTSTREAMSREQUEST.fields_by_name["identity"].message_type = _IDENTITY
+_STREAMINFOREQUEST.fields_by_name["identity"].message_type = _IDENTITY
+_STREAMINFORESPONSE_COMMANDSENTRY.fields_by_name[
+    "value"
+].message_type = _COMMANDMETADATA
 _STREAMINFORESPONSE_COMMANDSENTRY.containing_type = _STREAMINFORESPONSE
-_STREAMINFORESPONSE.fields_by_name['commands'].message_type = _STREAMINFORESPONSE_COMMANDSENTRY
-_COREINFOREQUEST.fields_by_name['identity'].message_type = _IDENTITY
-DESCRIPTOR.message_types_by_name['Identity'] = _IDENTITY
-DESCRIPTOR.message_types_by_name['StreamEventsRequest'] = _STREAMEVENTSREQUEST
-DESCRIPTOR.message_types_by_name['CommandMetadata'] = _COMMANDMETADATA
-DESCRIPTOR.message_types_by_name['Event'] = _EVENT
-DESCRIPTOR.message_types_by_name['MessageEvent'] = _MESSAGEEVENT
-DESCRIPTOR.message_types_by_name['PrivateMessageEvent'] = _PRIVATEMESSAGEEVENT
-DESCRIPTOR.message_types_by_name['MentionEvent'] = _MENTIONEVENT
-DESCRIPTOR.message_types_by_name['CommandEvent'] = _COMMANDEVENT
-DESCRIPTOR.message_types_by_name['SendMessageRequest'] = _SENDMESSAGEREQUEST
-DESCRIPTOR.message_types_by_name['SendMessageResponse'] = _SENDMESSAGERESPONSE
-DESCRIPTOR.message_types_by_name['SendRawMessageRequest'] = _SENDRAWMESSAGEREQUEST
-DESCRIPTOR.message_types_by_name['SendRawMessageResponse'] = _SENDRAWMESSAGERESPONSE
-DESCRIPTOR.message_types_by_name['ListChannelsRequest'] = _LISTCHANNELSREQUEST
-DESCRIPTOR.message_types_by_name['ListChannelsResponse'] = _LISTCHANNELSRESPONSE
-DESCRIPTOR.message_types_by_name['ChannelInfoRequest'] = _CHANNELINFOREQUEST
-DESCRIPTOR.message_types_by_name['User'] = _USER
-DESCRIPTOR.message_types_by_name['SetChannelTopicRequest'] = _SETCHANNELTOPICREQUEST
-DESCRIPTOR.message_types_by_name['SetChannelTopicResponse'] = _SETCHANNELTOPICRESPONSE
-DESCRIPTOR.message_types_by_name['ChannelInfoResponse'] = _CHANNELINFORESPONSE
-DESCRIPTOR.message_types_by_name['JoinChannelRequest'] = _JOINCHANNELREQUEST
-DESCRIPTOR.message_types_by_name['JoinChannelResponse'] = _JOINCHANNELRESPONSE
-DESCRIPTOR.message_types_by_name['LeaveChannelRequest'] = _LEAVECHANNELREQUEST
-DESCRIPTOR.message_types_by_name['LeaveChannelResponse'] = _LEAVECHANNELRESPONSE
-DESCRIPTOR.message_types_by_name['ListStreamsRequest'] = _LISTSTREAMSREQUEST
-DESCRIPTOR.message_types_by_name['ListStreamsResponse'] = _LISTSTREAMSRESPONSE
-DESCRIPTOR.message_types_by_name['StreamInfoRequest'] = _STREAMINFOREQUEST
-DESCRIPTOR.message_types_by_name['StreamInfoResponse'] = _STREAMINFORESPONSE
-DESCRIPTOR.message_types_by_name['CoreInfoRequest'] = _COREINFOREQUEST
-DESCRIPTOR.message_types_by_name['CoreInfoResponse'] = _COREINFORESPONSE
+_STREAMINFORESPONSE.fields_by_name[
+    "commands"
+].message_type = _STREAMINFORESPONSE_COMMANDSENTRY
+_COREINFOREQUEST.fields_by_name["identity"].message_type = _IDENTITY
+DESCRIPTOR.message_types_by_name["Identity"] = _IDENTITY
+DESCRIPTOR.message_types_by_name["StreamEventsRequest"] = _STREAMEVENTSREQUEST
+DESCRIPTOR.message_types_by_name["CommandMetadata"] = _COMMANDMETADATA
+DESCRIPTOR.message_types_by_name["Event"] = _EVENT
+DESCRIPTOR.message_types_by_name["MessageEvent"] = _MESSAGEEVENT
+DESCRIPTOR.message_types_by_name["PrivateMessageEvent"] = _PRIVATEMESSAGEEVENT
+DESCRIPTOR.message_types_by_name["MentionEvent"] = _MENTIONEVENT
+DESCRIPTOR.message_types_by_name["CommandEvent"] = _COMMANDEVENT
+DESCRIPTOR.message_types_by_name["SendMessageRequest"] = _SENDMESSAGEREQUEST
+DESCRIPTOR.message_types_by_name["SendMessageResponse"] = _SENDMESSAGERESPONSE
+DESCRIPTOR.message_types_by_name["SendRawMessageRequest"] = _SENDRAWMESSAGEREQUEST
+DESCRIPTOR.message_types_by_name["SendRawMessageResponse"] = _SENDRAWMESSAGERESPONSE
+DESCRIPTOR.message_types_by_name["ListChannelsRequest"] = _LISTCHANNELSREQUEST
+DESCRIPTOR.message_types_by_name["ListChannelsResponse"] = _LISTCHANNELSRESPONSE
+DESCRIPTOR.message_types_by_name["ChannelInfoRequest"] = _CHANNELINFOREQUEST
+DESCRIPTOR.message_types_by_name["User"] = _USER
+DESCRIPTOR.message_types_by_name["SetChannelTopicRequest"] = _SETCHANNELTOPICREQUEST
+DESCRIPTOR.message_types_by_name["SetChannelTopicResponse"] = _SETCHANNELTOPICRESPONSE
+DESCRIPTOR.message_types_by_name["ChannelInfoResponse"] = _CHANNELINFORESPONSE
+DESCRIPTOR.message_types_by_name["JoinChannelRequest"] = _JOINCHANNELREQUEST
+DESCRIPTOR.message_types_by_name["JoinChannelResponse"] = _JOINCHANNELRESPONSE
+DESCRIPTOR.message_types_by_name["LeaveChannelRequest"] = _LEAVECHANNELREQUEST
+DESCRIPTOR.message_types_by_name["LeaveChannelResponse"] = _LEAVECHANNELRESPONSE
+DESCRIPTOR.message_types_by_name["ListStreamsRequest"] = _LISTSTREAMSREQUEST
+DESCRIPTOR.message_types_by_name["ListStreamsResponse"] = _LISTSTREAMSRESPONSE
+DESCRIPTOR.message_types_by_name["StreamInfoRequest"] = _STREAMINFOREQUEST
+DESCRIPTOR.message_types_by_name["StreamInfoResponse"] = _STREAMINFORESPONSE
+DESCRIPTOR.message_types_by_name["CoreInfoRequest"] = _COREINFOREQUEST
+DESCRIPTOR.message_types_by_name["CoreInfoResponse"] = _COREINFORESPONSE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
-Identity = _reflection.GeneratedProtocolMessageType('Identity', (_message.Message,), {
-  'DESCRIPTOR' : _IDENTITY,
-  '__module__' : 'seabird_pb2'
-  # @@protoc_insertion_point(class_scope:seabird.Identity)
-  })
+Identity = _reflection.GeneratedProtocolMessageType(
+    "Identity",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _IDENTITY,
+        "__module__": "seabird_pb2"
+        # @@protoc_insertion_point(class_scope:seabird.Identity)
+    },
+)
 _sym_db.RegisterMessage(Identity)
 
-StreamEventsRequest = _reflection.GeneratedProtocolMessageType('StreamEventsRequest', (_message.Message,), {
-
-  'CommandsEntry' : _reflection.GeneratedProtocolMessageType('CommandsEntry', (_message.Message,), {
-    'DESCRIPTOR' : _STREAMEVENTSREQUEST_COMMANDSENTRY,
-    '__module__' : 'seabird_pb2'
-    # @@protoc_insertion_point(class_scope:seabird.StreamEventsRequest.CommandsEntry)
-    })
-  ,
-  'DESCRIPTOR' : _STREAMEVENTSREQUEST,
-  '__module__' : 'seabird_pb2'
-  # @@protoc_insertion_point(class_scope:seabird.StreamEventsRequest)
-  })
+StreamEventsRequest = _reflection.GeneratedProtocolMessageType(
+    "StreamEventsRequest",
+    (_message.Message,),
+    {
+        "CommandsEntry": _reflection.GeneratedProtocolMessageType(
+            "CommandsEntry",
+            (_message.Message,),
+            {
+                "DESCRIPTOR": _STREAMEVENTSREQUEST_COMMANDSENTRY,
+                "__module__": "seabird_pb2"
+                # @@protoc_insertion_point(class_scope:seabird.StreamEventsRequest.CommandsEntry)
+            },
+        ),
+        "DESCRIPTOR": _STREAMEVENTSREQUEST,
+        "__module__": "seabird_pb2"
+        # @@protoc_insertion_point(class_scope:seabird.StreamEventsRequest)
+    },
+)
 _sym_db.RegisterMessage(StreamEventsRequest)
 _sym_db.RegisterMessage(StreamEventsRequest.CommandsEntry)
 
-CommandMetadata = _reflection.GeneratedProtocolMessageType('CommandMetadata', (_message.Message,), {
-  'DESCRIPTOR' : _COMMANDMETADATA,
-  '__module__' : 'seabird_pb2'
-  # @@protoc_insertion_point(class_scope:seabird.CommandMetadata)
-  })
+CommandMetadata = _reflection.GeneratedProtocolMessageType(
+    "CommandMetadata",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _COMMANDMETADATA,
+        "__module__": "seabird_pb2"
+        # @@protoc_insertion_point(class_scope:seabird.CommandMetadata)
+    },
+)
 _sym_db.RegisterMessage(CommandMetadata)
 
-Event = _reflection.GeneratedProtocolMessageType('Event', (_message.Message,), {
-  'DESCRIPTOR' : _EVENT,
-  '__module__' : 'seabird_pb2'
-  # @@protoc_insertion_point(class_scope:seabird.Event)
-  })
+Event = _reflection.GeneratedProtocolMessageType(
+    "Event",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _EVENT,
+        "__module__": "seabird_pb2"
+        # @@protoc_insertion_point(class_scope:seabird.Event)
+    },
+)
 _sym_db.RegisterMessage(Event)
 
-MessageEvent = _reflection.GeneratedProtocolMessageType('MessageEvent', (_message.Message,), {
-  'DESCRIPTOR' : _MESSAGEEVENT,
-  '__module__' : 'seabird_pb2'
-  # @@protoc_insertion_point(class_scope:seabird.MessageEvent)
-  })
+MessageEvent = _reflection.GeneratedProtocolMessageType(
+    "MessageEvent",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _MESSAGEEVENT,
+        "__module__": "seabird_pb2"
+        # @@protoc_insertion_point(class_scope:seabird.MessageEvent)
+    },
+)
 _sym_db.RegisterMessage(MessageEvent)
 
-PrivateMessageEvent = _reflection.GeneratedProtocolMessageType('PrivateMessageEvent', (_message.Message,), {
-  'DESCRIPTOR' : _PRIVATEMESSAGEEVENT,
-  '__module__' : 'seabird_pb2'
-  # @@protoc_insertion_point(class_scope:seabird.PrivateMessageEvent)
-  })
+PrivateMessageEvent = _reflection.GeneratedProtocolMessageType(
+    "PrivateMessageEvent",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _PRIVATEMESSAGEEVENT,
+        "__module__": "seabird_pb2"
+        # @@protoc_insertion_point(class_scope:seabird.PrivateMessageEvent)
+    },
+)
 _sym_db.RegisterMessage(PrivateMessageEvent)
 
-MentionEvent = _reflection.GeneratedProtocolMessageType('MentionEvent', (_message.Message,), {
-  'DESCRIPTOR' : _MENTIONEVENT,
-  '__module__' : 'seabird_pb2'
-  # @@protoc_insertion_point(class_scope:seabird.MentionEvent)
-  })
+MentionEvent = _reflection.GeneratedProtocolMessageType(
+    "MentionEvent",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _MENTIONEVENT,
+        "__module__": "seabird_pb2"
+        # @@protoc_insertion_point(class_scope:seabird.MentionEvent)
+    },
+)
 _sym_db.RegisterMessage(MentionEvent)
 
-CommandEvent = _reflection.GeneratedProtocolMessageType('CommandEvent', (_message.Message,), {
-  'DESCRIPTOR' : _COMMANDEVENT,
-  '__module__' : 'seabird_pb2'
-  # @@protoc_insertion_point(class_scope:seabird.CommandEvent)
-  })
+CommandEvent = _reflection.GeneratedProtocolMessageType(
+    "CommandEvent",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _COMMANDEVENT,
+        "__module__": "seabird_pb2"
+        # @@protoc_insertion_point(class_scope:seabird.CommandEvent)
+    },
+)
 _sym_db.RegisterMessage(CommandEvent)
 
-SendMessageRequest = _reflection.GeneratedProtocolMessageType('SendMessageRequest', (_message.Message,), {
-  'DESCRIPTOR' : _SENDMESSAGEREQUEST,
-  '__module__' : 'seabird_pb2'
-  # @@protoc_insertion_point(class_scope:seabird.SendMessageRequest)
-  })
+SendMessageRequest = _reflection.GeneratedProtocolMessageType(
+    "SendMessageRequest",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _SENDMESSAGEREQUEST,
+        "__module__": "seabird_pb2"
+        # @@protoc_insertion_point(class_scope:seabird.SendMessageRequest)
+    },
+)
 _sym_db.RegisterMessage(SendMessageRequest)
 
-SendMessageResponse = _reflection.GeneratedProtocolMessageType('SendMessageResponse', (_message.Message,), {
-  'DESCRIPTOR' : _SENDMESSAGERESPONSE,
-  '__module__' : 'seabird_pb2'
-  # @@protoc_insertion_point(class_scope:seabird.SendMessageResponse)
-  })
+SendMessageResponse = _reflection.GeneratedProtocolMessageType(
+    "SendMessageResponse",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _SENDMESSAGERESPONSE,
+        "__module__": "seabird_pb2"
+        # @@protoc_insertion_point(class_scope:seabird.SendMessageResponse)
+    },
+)
 _sym_db.RegisterMessage(SendMessageResponse)
 
-SendRawMessageRequest = _reflection.GeneratedProtocolMessageType('SendRawMessageRequest', (_message.Message,), {
-  'DESCRIPTOR' : _SENDRAWMESSAGEREQUEST,
-  '__module__' : 'seabird_pb2'
-  # @@protoc_insertion_point(class_scope:seabird.SendRawMessageRequest)
-  })
+SendRawMessageRequest = _reflection.GeneratedProtocolMessageType(
+    "SendRawMessageRequest",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _SENDRAWMESSAGEREQUEST,
+        "__module__": "seabird_pb2"
+        # @@protoc_insertion_point(class_scope:seabird.SendRawMessageRequest)
+    },
+)
 _sym_db.RegisterMessage(SendRawMessageRequest)
 
-SendRawMessageResponse = _reflection.GeneratedProtocolMessageType('SendRawMessageResponse', (_message.Message,), {
-  'DESCRIPTOR' : _SENDRAWMESSAGERESPONSE,
-  '__module__' : 'seabird_pb2'
-  # @@protoc_insertion_point(class_scope:seabird.SendRawMessageResponse)
-  })
+SendRawMessageResponse = _reflection.GeneratedProtocolMessageType(
+    "SendRawMessageResponse",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _SENDRAWMESSAGERESPONSE,
+        "__module__": "seabird_pb2"
+        # @@protoc_insertion_point(class_scope:seabird.SendRawMessageResponse)
+    },
+)
 _sym_db.RegisterMessage(SendRawMessageResponse)
 
-ListChannelsRequest = _reflection.GeneratedProtocolMessageType('ListChannelsRequest', (_message.Message,), {
-  'DESCRIPTOR' : _LISTCHANNELSREQUEST,
-  '__module__' : 'seabird_pb2'
-  # @@protoc_insertion_point(class_scope:seabird.ListChannelsRequest)
-  })
+ListChannelsRequest = _reflection.GeneratedProtocolMessageType(
+    "ListChannelsRequest",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _LISTCHANNELSREQUEST,
+        "__module__": "seabird_pb2"
+        # @@protoc_insertion_point(class_scope:seabird.ListChannelsRequest)
+    },
+)
 _sym_db.RegisterMessage(ListChannelsRequest)
 
-ListChannelsResponse = _reflection.GeneratedProtocolMessageType('ListChannelsResponse', (_message.Message,), {
-  'DESCRIPTOR' : _LISTCHANNELSRESPONSE,
-  '__module__' : 'seabird_pb2'
-  # @@protoc_insertion_point(class_scope:seabird.ListChannelsResponse)
-  })
+ListChannelsResponse = _reflection.GeneratedProtocolMessageType(
+    "ListChannelsResponse",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _LISTCHANNELSRESPONSE,
+        "__module__": "seabird_pb2"
+        # @@protoc_insertion_point(class_scope:seabird.ListChannelsResponse)
+    },
+)
 _sym_db.RegisterMessage(ListChannelsResponse)
 
-ChannelInfoRequest = _reflection.GeneratedProtocolMessageType('ChannelInfoRequest', (_message.Message,), {
-  'DESCRIPTOR' : _CHANNELINFOREQUEST,
-  '__module__' : 'seabird_pb2'
-  # @@protoc_insertion_point(class_scope:seabird.ChannelInfoRequest)
-  })
+ChannelInfoRequest = _reflection.GeneratedProtocolMessageType(
+    "ChannelInfoRequest",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _CHANNELINFOREQUEST,
+        "__module__": "seabird_pb2"
+        # @@protoc_insertion_point(class_scope:seabird.ChannelInfoRequest)
+    },
+)
 _sym_db.RegisterMessage(ChannelInfoRequest)
 
-User = _reflection.GeneratedProtocolMessageType('User', (_message.Message,), {
-  'DESCRIPTOR' : _USER,
-  '__module__' : 'seabird_pb2'
-  # @@protoc_insertion_point(class_scope:seabird.User)
-  })
+User = _reflection.GeneratedProtocolMessageType(
+    "User",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _USER,
+        "__module__": "seabird_pb2"
+        # @@protoc_insertion_point(class_scope:seabird.User)
+    },
+)
 _sym_db.RegisterMessage(User)
 
-SetChannelTopicRequest = _reflection.GeneratedProtocolMessageType('SetChannelTopicRequest', (_message.Message,), {
-  'DESCRIPTOR' : _SETCHANNELTOPICREQUEST,
-  '__module__' : 'seabird_pb2'
-  # @@protoc_insertion_point(class_scope:seabird.SetChannelTopicRequest)
-  })
+SetChannelTopicRequest = _reflection.GeneratedProtocolMessageType(
+    "SetChannelTopicRequest",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _SETCHANNELTOPICREQUEST,
+        "__module__": "seabird_pb2"
+        # @@protoc_insertion_point(class_scope:seabird.SetChannelTopicRequest)
+    },
+)
 _sym_db.RegisterMessage(SetChannelTopicRequest)
 
-SetChannelTopicResponse = _reflection.GeneratedProtocolMessageType('SetChannelTopicResponse', (_message.Message,), {
-  'DESCRIPTOR' : _SETCHANNELTOPICRESPONSE,
-  '__module__' : 'seabird_pb2'
-  # @@protoc_insertion_point(class_scope:seabird.SetChannelTopicResponse)
-  })
+SetChannelTopicResponse = _reflection.GeneratedProtocolMessageType(
+    "SetChannelTopicResponse",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _SETCHANNELTOPICRESPONSE,
+        "__module__": "seabird_pb2"
+        # @@protoc_insertion_point(class_scope:seabird.SetChannelTopicResponse)
+    },
+)
 _sym_db.RegisterMessage(SetChannelTopicResponse)
 
-ChannelInfoResponse = _reflection.GeneratedProtocolMessageType('ChannelInfoResponse', (_message.Message,), {
-  'DESCRIPTOR' : _CHANNELINFORESPONSE,
-  '__module__' : 'seabird_pb2'
-  # @@protoc_insertion_point(class_scope:seabird.ChannelInfoResponse)
-  })
+ChannelInfoResponse = _reflection.GeneratedProtocolMessageType(
+    "ChannelInfoResponse",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _CHANNELINFORESPONSE,
+        "__module__": "seabird_pb2"
+        # @@protoc_insertion_point(class_scope:seabird.ChannelInfoResponse)
+    },
+)
 _sym_db.RegisterMessage(ChannelInfoResponse)
 
-JoinChannelRequest = _reflection.GeneratedProtocolMessageType('JoinChannelRequest', (_message.Message,), {
-  'DESCRIPTOR' : _JOINCHANNELREQUEST,
-  '__module__' : 'seabird_pb2'
-  # @@protoc_insertion_point(class_scope:seabird.JoinChannelRequest)
-  })
+JoinChannelRequest = _reflection.GeneratedProtocolMessageType(
+    "JoinChannelRequest",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _JOINCHANNELREQUEST,
+        "__module__": "seabird_pb2"
+        # @@protoc_insertion_point(class_scope:seabird.JoinChannelRequest)
+    },
+)
 _sym_db.RegisterMessage(JoinChannelRequest)
 
-JoinChannelResponse = _reflection.GeneratedProtocolMessageType('JoinChannelResponse', (_message.Message,), {
-  'DESCRIPTOR' : _JOINCHANNELRESPONSE,
-  '__module__' : 'seabird_pb2'
-  # @@protoc_insertion_point(class_scope:seabird.JoinChannelResponse)
-  })
+JoinChannelResponse = _reflection.GeneratedProtocolMessageType(
+    "JoinChannelResponse",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _JOINCHANNELRESPONSE,
+        "__module__": "seabird_pb2"
+        # @@protoc_insertion_point(class_scope:seabird.JoinChannelResponse)
+    },
+)
 _sym_db.RegisterMessage(JoinChannelResponse)
 
-LeaveChannelRequest = _reflection.GeneratedProtocolMessageType('LeaveChannelRequest', (_message.Message,), {
-  'DESCRIPTOR' : _LEAVECHANNELREQUEST,
-  '__module__' : 'seabird_pb2'
-  # @@protoc_insertion_point(class_scope:seabird.LeaveChannelRequest)
-  })
+LeaveChannelRequest = _reflection.GeneratedProtocolMessageType(
+    "LeaveChannelRequest",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _LEAVECHANNELREQUEST,
+        "__module__": "seabird_pb2"
+        # @@protoc_insertion_point(class_scope:seabird.LeaveChannelRequest)
+    },
+)
 _sym_db.RegisterMessage(LeaveChannelRequest)
 
-LeaveChannelResponse = _reflection.GeneratedProtocolMessageType('LeaveChannelResponse', (_message.Message,), {
-  'DESCRIPTOR' : _LEAVECHANNELRESPONSE,
-  '__module__' : 'seabird_pb2'
-  # @@protoc_insertion_point(class_scope:seabird.LeaveChannelResponse)
-  })
+LeaveChannelResponse = _reflection.GeneratedProtocolMessageType(
+    "LeaveChannelResponse",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _LEAVECHANNELRESPONSE,
+        "__module__": "seabird_pb2"
+        # @@protoc_insertion_point(class_scope:seabird.LeaveChannelResponse)
+    },
+)
 _sym_db.RegisterMessage(LeaveChannelResponse)
 
-ListStreamsRequest = _reflection.GeneratedProtocolMessageType('ListStreamsRequest', (_message.Message,), {
-  'DESCRIPTOR' : _LISTSTREAMSREQUEST,
-  '__module__' : 'seabird_pb2'
-  # @@protoc_insertion_point(class_scope:seabird.ListStreamsRequest)
-  })
+ListStreamsRequest = _reflection.GeneratedProtocolMessageType(
+    "ListStreamsRequest",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _LISTSTREAMSREQUEST,
+        "__module__": "seabird_pb2"
+        # @@protoc_insertion_point(class_scope:seabird.ListStreamsRequest)
+    },
+)
 _sym_db.RegisterMessage(ListStreamsRequest)
 
-ListStreamsResponse = _reflection.GeneratedProtocolMessageType('ListStreamsResponse', (_message.Message,), {
-  'DESCRIPTOR' : _LISTSTREAMSRESPONSE,
-  '__module__' : 'seabird_pb2'
-  # @@protoc_insertion_point(class_scope:seabird.ListStreamsResponse)
-  })
+ListStreamsResponse = _reflection.GeneratedProtocolMessageType(
+    "ListStreamsResponse",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _LISTSTREAMSRESPONSE,
+        "__module__": "seabird_pb2"
+        # @@protoc_insertion_point(class_scope:seabird.ListStreamsResponse)
+    },
+)
 _sym_db.RegisterMessage(ListStreamsResponse)
 
-StreamInfoRequest = _reflection.GeneratedProtocolMessageType('StreamInfoRequest', (_message.Message,), {
-  'DESCRIPTOR' : _STREAMINFOREQUEST,
-  '__module__' : 'seabird_pb2'
-  # @@protoc_insertion_point(class_scope:seabird.StreamInfoRequest)
-  })
+StreamInfoRequest = _reflection.GeneratedProtocolMessageType(
+    "StreamInfoRequest",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _STREAMINFOREQUEST,
+        "__module__": "seabird_pb2"
+        # @@protoc_insertion_point(class_scope:seabird.StreamInfoRequest)
+    },
+)
 _sym_db.RegisterMessage(StreamInfoRequest)
 
-StreamInfoResponse = _reflection.GeneratedProtocolMessageType('StreamInfoResponse', (_message.Message,), {
-
-  'CommandsEntry' : _reflection.GeneratedProtocolMessageType('CommandsEntry', (_message.Message,), {
-    'DESCRIPTOR' : _STREAMINFORESPONSE_COMMANDSENTRY,
-    '__module__' : 'seabird_pb2'
-    # @@protoc_insertion_point(class_scope:seabird.StreamInfoResponse.CommandsEntry)
-    })
-  ,
-  'DESCRIPTOR' : _STREAMINFORESPONSE,
-  '__module__' : 'seabird_pb2'
-  # @@protoc_insertion_point(class_scope:seabird.StreamInfoResponse)
-  })
+StreamInfoResponse = _reflection.GeneratedProtocolMessageType(
+    "StreamInfoResponse",
+    (_message.Message,),
+    {
+        "CommandsEntry": _reflection.GeneratedProtocolMessageType(
+            "CommandsEntry",
+            (_message.Message,),
+            {
+                "DESCRIPTOR": _STREAMINFORESPONSE_COMMANDSENTRY,
+                "__module__": "seabird_pb2"
+                # @@protoc_insertion_point(class_scope:seabird.StreamInfoResponse.CommandsEntry)
+            },
+        ),
+        "DESCRIPTOR": _STREAMINFORESPONSE,
+        "__module__": "seabird_pb2"
+        # @@protoc_insertion_point(class_scope:seabird.StreamInfoResponse)
+    },
+)
 _sym_db.RegisterMessage(StreamInfoResponse)
 _sym_db.RegisterMessage(StreamInfoResponse.CommandsEntry)
 
-CoreInfoRequest = _reflection.GeneratedProtocolMessageType('CoreInfoRequest', (_message.Message,), {
-  'DESCRIPTOR' : _COREINFOREQUEST,
-  '__module__' : 'seabird_pb2'
-  # @@protoc_insertion_point(class_scope:seabird.CoreInfoRequest)
-  })
+CoreInfoRequest = _reflection.GeneratedProtocolMessageType(
+    "CoreInfoRequest",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _COREINFOREQUEST,
+        "__module__": "seabird_pb2"
+        # @@protoc_insertion_point(class_scope:seabird.CoreInfoRequest)
+    },
+)
 _sym_db.RegisterMessage(CoreInfoRequest)
 
-CoreInfoResponse = _reflection.GeneratedProtocolMessageType('CoreInfoResponse', (_message.Message,), {
-  'DESCRIPTOR' : _COREINFORESPONSE,
-  '__module__' : 'seabird_pb2'
-  # @@protoc_insertion_point(class_scope:seabird.CoreInfoResponse)
-  })
+CoreInfoResponse = _reflection.GeneratedProtocolMessageType(
+    "CoreInfoResponse",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _COREINFORESPONSE,
+        "__module__": "seabird_pb2"
+        # @@protoc_insertion_point(class_scope:seabird.CoreInfoResponse)
+    },
+)
 _sym_db.RegisterMessage(CoreInfoResponse)
 
 
@@ -1491,116 +2198,117 @@ _STREAMEVENTSREQUEST_COMMANDSENTRY._options = None
 _STREAMINFORESPONSE_COMMANDSENTRY._options = None
 
 _SEABIRD = _descriptor.ServiceDescriptor(
-  name='Seabird',
-  full_name='seabird.Seabird',
-  file=DESCRIPTOR,
-  index=0,
-  serialized_options=None,
-  serialized_start=2214,
-  serialized_end=3051,
-  methods=[
-  _descriptor.MethodDescriptor(
-    name='StreamEvents',
-    full_name='seabird.Seabird.StreamEvents',
+    name="Seabird",
+    full_name="seabird.Seabird",
+    file=DESCRIPTOR,
     index=0,
-    containing_service=None,
-    input_type=_STREAMEVENTSREQUEST,
-    output_type=_EVENT,
     serialized_options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='SendMessage',
-    full_name='seabird.Seabird.SendMessage',
-    index=1,
-    containing_service=None,
-    input_type=_SENDMESSAGEREQUEST,
-    output_type=_SENDMESSAGERESPONSE,
-    serialized_options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='SendRawMessage',
-    full_name='seabird.Seabird.SendRawMessage',
-    index=2,
-    containing_service=None,
-    input_type=_SENDRAWMESSAGEREQUEST,
-    output_type=_SENDRAWMESSAGERESPONSE,
-    serialized_options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='JoinChannel',
-    full_name='seabird.Seabird.JoinChannel',
-    index=3,
-    containing_service=None,
-    input_type=_JOINCHANNELREQUEST,
-    output_type=_JOINCHANNELRESPONSE,
-    serialized_options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='LeaveChannel',
-    full_name='seabird.Seabird.LeaveChannel',
-    index=4,
-    containing_service=None,
-    input_type=_LEAVECHANNELREQUEST,
-    output_type=_LEAVECHANNELRESPONSE,
-    serialized_options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='ListChannels',
-    full_name='seabird.Seabird.ListChannels',
-    index=5,
-    containing_service=None,
-    input_type=_LISTCHANNELSREQUEST,
-    output_type=_LISTCHANNELSRESPONSE,
-    serialized_options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='GetChannelInfo',
-    full_name='seabird.Seabird.GetChannelInfo',
-    index=6,
-    containing_service=None,
-    input_type=_CHANNELINFOREQUEST,
-    output_type=_CHANNELINFORESPONSE,
-    serialized_options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='SetChannelTopic',
-    full_name='seabird.Seabird.SetChannelTopic',
-    index=7,
-    containing_service=None,
-    input_type=_SETCHANNELTOPICREQUEST,
-    output_type=_SETCHANNELTOPICRESPONSE,
-    serialized_options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='ListStreams',
-    full_name='seabird.Seabird.ListStreams',
-    index=8,
-    containing_service=None,
-    input_type=_LISTSTREAMSREQUEST,
-    output_type=_LISTSTREAMSRESPONSE,
-    serialized_options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='GetStreamInfo',
-    full_name='seabird.Seabird.GetStreamInfo',
-    index=9,
-    containing_service=None,
-    input_type=_STREAMINFOREQUEST,
-    output_type=_STREAMINFORESPONSE,
-    serialized_options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='GetCoreInfo',
-    full_name='seabird.Seabird.GetCoreInfo',
-    index=10,
-    containing_service=None,
-    input_type=_COREINFOREQUEST,
-    output_type=_COREINFORESPONSE,
-    serialized_options=None,
-  ),
-])
+    serialized_start=2214,
+    serialized_end=3051,
+    methods=[
+        _descriptor.MethodDescriptor(
+            name="StreamEvents",
+            full_name="seabird.Seabird.StreamEvents",
+            index=0,
+            containing_service=None,
+            input_type=_STREAMEVENTSREQUEST,
+            output_type=_EVENT,
+            serialized_options=None,
+        ),
+        _descriptor.MethodDescriptor(
+            name="SendMessage",
+            full_name="seabird.Seabird.SendMessage",
+            index=1,
+            containing_service=None,
+            input_type=_SENDMESSAGEREQUEST,
+            output_type=_SENDMESSAGERESPONSE,
+            serialized_options=None,
+        ),
+        _descriptor.MethodDescriptor(
+            name="SendRawMessage",
+            full_name="seabird.Seabird.SendRawMessage",
+            index=2,
+            containing_service=None,
+            input_type=_SENDRAWMESSAGEREQUEST,
+            output_type=_SENDRAWMESSAGERESPONSE,
+            serialized_options=None,
+        ),
+        _descriptor.MethodDescriptor(
+            name="JoinChannel",
+            full_name="seabird.Seabird.JoinChannel",
+            index=3,
+            containing_service=None,
+            input_type=_JOINCHANNELREQUEST,
+            output_type=_JOINCHANNELRESPONSE,
+            serialized_options=None,
+        ),
+        _descriptor.MethodDescriptor(
+            name="LeaveChannel",
+            full_name="seabird.Seabird.LeaveChannel",
+            index=4,
+            containing_service=None,
+            input_type=_LEAVECHANNELREQUEST,
+            output_type=_LEAVECHANNELRESPONSE,
+            serialized_options=None,
+        ),
+        _descriptor.MethodDescriptor(
+            name="ListChannels",
+            full_name="seabird.Seabird.ListChannels",
+            index=5,
+            containing_service=None,
+            input_type=_LISTCHANNELSREQUEST,
+            output_type=_LISTCHANNELSRESPONSE,
+            serialized_options=None,
+        ),
+        _descriptor.MethodDescriptor(
+            name="GetChannelInfo",
+            full_name="seabird.Seabird.GetChannelInfo",
+            index=6,
+            containing_service=None,
+            input_type=_CHANNELINFOREQUEST,
+            output_type=_CHANNELINFORESPONSE,
+            serialized_options=None,
+        ),
+        _descriptor.MethodDescriptor(
+            name="SetChannelTopic",
+            full_name="seabird.Seabird.SetChannelTopic",
+            index=7,
+            containing_service=None,
+            input_type=_SETCHANNELTOPICREQUEST,
+            output_type=_SETCHANNELTOPICRESPONSE,
+            serialized_options=None,
+        ),
+        _descriptor.MethodDescriptor(
+            name="ListStreams",
+            full_name="seabird.Seabird.ListStreams",
+            index=8,
+            containing_service=None,
+            input_type=_LISTSTREAMSREQUEST,
+            output_type=_LISTSTREAMSRESPONSE,
+            serialized_options=None,
+        ),
+        _descriptor.MethodDescriptor(
+            name="GetStreamInfo",
+            full_name="seabird.Seabird.GetStreamInfo",
+            index=9,
+            containing_service=None,
+            input_type=_STREAMINFOREQUEST,
+            output_type=_STREAMINFORESPONSE,
+            serialized_options=None,
+        ),
+        _descriptor.MethodDescriptor(
+            name="GetCoreInfo",
+            full_name="seabird.Seabird.GetCoreInfo",
+            index=10,
+            containing_service=None,
+            input_type=_COREINFOREQUEST,
+            output_type=_COREINFORESPONSE,
+            serialized_options=None,
+        ),
+    ],
+)
 _sym_db.RegisterServiceDescriptor(_SEABIRD)
 
-DESCRIPTOR.services_by_name['Seabird'] = _SEABIRD
+DESCRIPTOR.services_by_name["Seabird"] = _SEABIRD
 
 # @@protoc_insertion_point(module_scope)

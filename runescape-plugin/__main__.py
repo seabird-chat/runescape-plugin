@@ -1,11 +1,12 @@
 import argparse
+import os
 import base64
 import logging
 import grpc
+from dotenv import load_dotenv
 
 import seabird_pb2
 import seabird_pb2_grpc
-import config
 from interceptor import add_header
 from runescape import level_callback, pretty_suffix, pretty_thousands
 
@@ -14,6 +15,8 @@ ch = logging.StreamHandler()
 formatter = logging.Formatter("[%(levelname)s %(asctime)s %(name)s] %(message)s")
 ch.setFormatter(formatter)
 LOG.addHandler(ch)
+
+load_dotenv()
 
 
 def handle_level(stub, identity, command):
@@ -55,37 +58,45 @@ def main():
     else:
         LOG.setLevel("INFO")
 
-    with grpc.secure_channel(
-        config.host_port, grpc.ssl_channel_credentials()
-    ) as channel:
+    host_port = os.getenv("HOST_PORT")
+    if host_port is None:
+        LOG.error("Missing $HOST_PORT setting")
+        return
+
+    token = os.getenv("TOKEN")
+    if token is None:
+        LOG.error("Missing $TOKEN setting")
+        return
+
+    with grpc.secure_channel(host_port, grpc.ssl_channel_credentials()) as channel:
         stub = seabird_pb2_grpc.SeabirdStub(channel)
 
-        LOG.info("Connection established with seabird core at %s", config.host_port)
+        LOG.info("Connection established with seabird core at %s", host_port)
 
-        identity=seabird_pb2.Identity(
-            token=config.token,
-        )
+        identity = seabird_pb2.Identity(token=token,)
 
-        for event in stub.StreamEvents(seabird_pb2.StreamEventsRequest(
-            identity=identity,
-            commands={
-                "rlvl": seabird_pb2.CommandMetadata(
-                    name="rlvl",
-                    short_help="Old-School RuneScape level information",
-                    full_help="Get an Old-School RuneScape character's level(s)",
-                ),
-                "rexp": seabird_pb2.CommandMetadata(
-                    name="rexp",
-                    short_help="Old-School RuneScape experience information",
-                    full_help="Get an Old-School RuneScape character's experience in a skill",
-                ),
-                "rrank": seabird_pb2.CommandMetadata(
-                    name="rrank",
-                    short_help="Old-School RuneScape rank information",
-                    full_help="Get an Old-School RuneScape character's rank in a skill",
-                ),
-            },
-        )):
+        for event in stub.StreamEvents(
+            seabird_pb2.StreamEventsRequest(
+                identity=identity,
+                commands={
+                    "rlvl": seabird_pb2.CommandMetadata(
+                        name="rlvl",
+                        short_help="Old-School RuneScape level information",
+                        full_help="Get an Old-School RuneScape character's level(s)",
+                    ),
+                    "rexp": seabird_pb2.CommandMetadata(
+                        name="rexp",
+                        short_help="Old-School RuneScape experience information",
+                        full_help="Get an Old-School RuneScape character's experience in a skill",
+                    ),
+                    "rrank": seabird_pb2.CommandMetadata(
+                        name="rrank",
+                        short_help="Old-School RuneScape rank information",
+                        full_help="Get an Old-School RuneScape character's rank in a skill",
+                    ),
+                },
+            )
+        ):
             command = event.command
             if not command:
                 continue
