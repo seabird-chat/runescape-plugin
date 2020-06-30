@@ -127,25 +127,24 @@ def pretty_thousands(number: int) -> str:
 
 def level_callback(
     stub,
-    identity,
     command,
     prop: str,
     response_format: str,
     value_format: Callable[[int], str],
 ) -> None:
     if not command.arg:
-        reply_to(stub, identity, command, f"Usage: {prop} <player> <skill>")
+        reply_to(stub, command, f"Usage: {prop} <player> <skill>")
         return
 
     m = IGN_MATCH.match(command.arg)
     if not m:
-        reply_to(stub, identity, command, "Unable to parse IGN out of command")
+        reply_to(stub, command, "Unable to parse IGN out of command")
         return
 
     ign = m.group(0)
     skills_str = command.arg.replace(f"{ign} ", "")
     if not skills_str:
-        reply_to(stub, identity, command, "Must pass at least one skill")
+        reply_to(stub, command, "Must pass at least one skill")
         return
 
     skills = []
@@ -156,20 +155,20 @@ def level_callback(
     levels = get_player_levels(ign)
     if levels is None:
         reply_to(
-            stub, identity, command, f"Error getting level information for {args[0]}",
+            stub, command, f"Error getting level information for {args[0]}",
         )
         return
 
     messages = []
     for skill in skills:
         if skill not in levels:
-            reply_to(stub, identity, command, f'Unknown skill "{skill}"')
+            reply_to(stub, command, f'Unknown skill "{skill}"')
             return
 
         value = getattr(levels[skill], prop)
         if value is None or value < 0:
             reply_to(
-                stub, identity, command, f"{args[0]}'s {prop} in {skill} is unknown",
+                stub, command, f"{args[0]}'s {prop} in {skill} is unknown",
             )
             return
 
@@ -177,7 +176,7 @@ def level_callback(
         messages.append(response_format.format(skill=skill, value=value_str,))
 
     reply_to(
-        stub, identity, command, "{} has {}".format(ign, ", ".join(messages),),
+        stub, command, "{} has {}".format(ign, ", ".join(messages),),
     )
 
 
@@ -219,11 +218,10 @@ def get_player_levels(player: str,) -> Optional[Dict[str, LevelMetadata]]:
     return levels
 
 
-def reply_to(stub, identity, event, message):
+def reply_to(stub, event, message):
     stub.SendMessage.with_call(
         seabird_pb2.SendMessageRequest(
-            identity=identity,
-            target=event.reply_to,
-            message=f"{event.sender}: {message}",
+            channel_id=event.source.channel_id,
+            text=f"{event.source.user.display_name}: {message}",
         )
     )

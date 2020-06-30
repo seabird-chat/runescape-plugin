@@ -19,16 +19,15 @@ LOG.addHandler(ch)
 load_dotenv()
 
 
-def handle_level(stub, identity, command):
+def handle_level(stub, command):
     level_callback(
-        stub, identity, command, "level", "level {value} {skill}", str,
+        stub, command, "level", "level {value} {skill}", str,
     )
 
 
-def handle_experience(stub, identity, command) -> None:
+def handle_experience(stub, command) -> None:
     level_callback(
         stub,
-        identity,
         command,
         "experience",
         "{value} experience in {skill}",
@@ -36,9 +35,9 @@ def handle_experience(stub, identity, command) -> None:
     )
 
 
-def handle_rank(stub, identity, command) -> None:
+def handle_rank(stub, command) -> None:
     level_callback(
-        stub, identity, command, "rank", "rank {value} in {skill}", pretty_thousands,
+        stub, command, "rank", "rank {value} in {skill}", pretty_thousands,
     )
 
 
@@ -56,15 +55,20 @@ def main():
         return
 
     with grpc.secure_channel(host_port, grpc.ssl_channel_credentials()) as channel:
+        channel = grpc.intercept_channel(
+            channel,
+            add_header(
+                "authorization",
+                f"Bearer {token}",
+            ),
+        )
+
         stub = seabird_pb2_grpc.SeabirdStub(channel)
 
         LOG.info("Connection established with seabird core at %s", host_port)
 
-        identity = seabird_pb2.Identity(token=token,)
-
         for event in stub.StreamEvents(
             seabird_pb2.StreamEventsRequest(
-                identity=identity,
                 commands={
                     "rlvl": seabird_pb2.CommandMetadata(
                         name="rlvl",
@@ -90,11 +94,11 @@ def main():
 
             LOG.debug("Received command %s", command)
             if command.command == "rlvl":
-                handle_level(stub, identity, command)
+                handle_level(stub, command)
             elif command.command == "rexp":
-                handle_experience(stub, identity, command)
+                handle_experience(stub, command)
             elif command.command == "rrank":
-                handle_rank(stub, identity, command)
+                handle_rank(stub, command)
 
 
 main()
