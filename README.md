@@ -1,5 +1,7 @@
 # runescape-plugin
 
+NOTE: this plugin was never updated and is not currently in use, so it's being archived for now.
+
 Plugin for Seabird to get Old-School Runescape player information.
 
 ## Commands
